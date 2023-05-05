@@ -18,7 +18,7 @@ SRC_DIR="/usr/local/src"
 
 # Pythia
 echo "===> Installing Pythia ${PYTHIA_VERSION}"
-PYTHIA_DIR="${SRC_DIR}/pythia${PYTHIA_VERSION//./}"
+PYTHIA_DIR="${SRC_DIR}/pythia/pythia${PYTHIA_VERSION//./}"
 cd ${PYTHIA_DIR}
 ${SUDO} make install
 
@@ -29,14 +29,14 @@ source ${HERWIG_DIR}/bin/activate
 
 # Madgraph
 echo "===> Installing Madgraph ${MADGRAPH_VERSION}"
-MADGRAPH_DIR="${SRC_DIR}/MG5_aMC_v${MADGRAPH_VERSION//./_}"
+MADGRAPH_DIR="${SRC_DIR}/madgraph/MG5_aMC_v${MADGRAPH_VERSION//./_}"
 cd ${MADGRAPH_DIR}
 export PATH=${MADGRAPH_DIR}/bin:${PATH}
 echo "export PATH=${MADGRAPH_DIR}/bin:${PATH}" >> ${HOME}/.bashrc
 
 # Superchic
 echo "===> Installing Superchic ${SUPERCHIC_VERSION}"
-SUPERCHIC_DIR="${SRC_DIR}/superchic${SUPERCHIC_VERSION}"
+SUPERCHIC_DIR="${SRC_DIR}/superchic/superchic${SUPERCHIC_VERSION}"
 export PATH=${SUPERCHIC_DIR}/bin:${PATH}
 export LD_LIBRARY_PATH=${SUPERCHIC_DIR}/LIB:${LD_LIBRARY_PATH}
 echo "export PATH=${SUPERCHIC_DIR}/bin:${PATH}" >> ${HOME}/.bashrc

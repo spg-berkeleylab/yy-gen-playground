@@ -74,6 +74,9 @@ RUN cd /usr/local/src/superchic && \
 
 # System-wide settings
 ######### 
+# sudo, set user password as well for sudo
+RUN apt -y install sudo && usermod -aG sudo ubuntu && \
+ echo "ubuntu:yygen" | chpasswd
 
 # Switch to ubuntu user
 USER ubuntu

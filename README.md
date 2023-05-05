@@ -4,25 +4,27 @@ Develop a docker container for quickly and easily test solution for common (and 
 The docker image is available as `spagan/yy-gen-playground` on dockerhub (see instructions below).
 
 ## Getting started
-Clone this repository locally and download the docker image:
+Clone this repository locally, download the docker image and create a run folder to easily share the work across containers:
 ```
 git clone https://github.com/spg-berkeleylab/yy-gen-playground.git
 docker pull XXXXX
+mkdir run
 ```
 
 To create a new container based on this image you can simply run:
 ```bash
-docker run -it -v ${PWD}/yy-gen-playground:/work/yy-gen-playground -- spagan/yy-gen-playground:latest /bin/bash
+docker run -it -v ${PWD}/yy-gen-playground:/work/yy-gen-playground -v ${PWD}/run:/work/run -- spagan/yy-gen-playground:latest /bin/bash
 ```
 
 Once the container has started, you need to install the specific version of versioned-software. Edit first the `${HOME}/yy-gen-playground/scripts/install-versioned-sw.sh` if you need to adjust the version of the software you'd like to have available. Then execute the script
 ```bash
 . yy-gen-playground/scripts/install-versioned-sw.sh
 ```
-to actually install the software system-wide and make it available in the container.
+to actually install the software system-wide and make it available in the container. When asked for the user password, use `yygen`.
 The script also defines a set of environment variables called `XXX_DIR` that point to the location of the specific version, e.g. `PYTHIA_DIR`, etc..
 
 If you want to run with a different version, the easiest is to create a separate container from the same image. This also allows to keep each setup separately and launch the corresponding container when needed.
+
 
 
 ## Available Software
