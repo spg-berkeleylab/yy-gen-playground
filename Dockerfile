@@ -16,6 +16,10 @@ RUN mkdir /code && cd /code && \
   make -j 4 && make install && \
   cd ${HOME} && rm -rf /code
 
+# hepm2dot (visualization)
+RUN cd /usr/local/src/ && git clone https://github.com/spagangriso/hepmc2dot.git && \
+ cd hepmc2dot && pip install -r requirements.txt
+
 # Get and compile versioned software. Will install when launching the container.
 #########
 
@@ -33,6 +37,7 @@ RUN cd /usr/local/src/pythia && \
 
 # Herwig
 RUN mkdir -pv /usr/local/src/herwig
+ENV LHAPDF_DATA_PATH="/usr/local/share/LHAPDF"
 RUN cd /usr/local/src/herwig && \
  wget https://herwig.hepforge.org/downloads/herwig-bootstrap && chmod +x herwig-bootstrap && \
  ./herwig-bootstrap -j 4 --without-madgraph --with-hepmc=/usr/local --with-lhapdf=`lhapdf-config --prefix` --with-yoda=`yoda-config --prefix` --with-rivet=`rivet-config --prefix`  /usr/local/src/herwig/

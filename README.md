@@ -4,9 +4,10 @@ Develop a docker container for quickly and easily test solution for common (and 
 The docker image is available as `spagan/yy-gen-playground` on dockerhub (see instructions below).
 
 ## Getting started
-Clone this repository locally:
+Clone this repository locally and download the docker image:
 ```
 git clone https://github.com/spg-berkeleylab/yy-gen-playground.git
+docker pull XXXXX
 ```
 
 To create a new container based on this image you can simply run:
@@ -51,9 +52,14 @@ The list of *pre-installed software* is:
 | Analysis      | Yoda    | 3.1.8 | hepstore/rivet |
 | Analysis      | ROOT    | 6.28.02 | hepstore/rivet |
 | Analysis      | HighFive | 2.7.1 | hepstore/rivet |
+| Analysis      | 
+
+TODO: visualization hepmc
 
 Several other utility packages are also installed (e.g. python3, latex, general c++ building tools, etc..) and not listed above.
 
 ## Utility scripts and programs
 A set of utility scripts and program is available in this repository to facilitate generating and analyzing common processes of interest.
 
+* `scripts/install-versioned-sw.sh` make versioned software available system-wide (see instructions above)
+* `scripts/create-graph-pdf.sh` read an HepMC file an create a PDF with event visualization (1 event per page)
