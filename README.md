@@ -41,7 +41,7 @@ The *versioned software* is pre-compiled and available in the `/usr/local/src/` 
 
 (*) = default version
 
-The list of *pre-installed software* is:
+The list of *pre-installed software* available system-wide is:
 
 | Type | Name | Versions | Source / Note  |
 |------|------|----------|--------|
@@ -52,9 +52,9 @@ The list of *pre-installed software* is:
 | Analysis      | Yoda    | 3.1.8 | hepstore/rivet |
 | Analysis      | ROOT    | 6.28.02 | hepstore/rivet |
 | Analysis      | HighFive | 2.7.1 | hepstore/rivet |
-| Analysis      | 
+| Analysis      | hepmc2dot | custom | [web](https://github.com/spagangriso/hepmc2dot) |
 
-TODO: visualization hepmc
+
 
 Several other utility packages are also installed (e.g. python3, latex, general c++ building tools, etc..) and not listed above.
 
