@@ -12,7 +12,7 @@ docker pull XXXXX
 
 To create a new container based on this image you can simply run:
 ```bash
-docker -it spagan/yy-gen-playground:latest -v yy-gen-playground:/home/ubuntu/yy-gen-playground -- /bin/bash
+docker run -it -v ${PWD}/yy-gen-playground:/work/yy-gen-playground -- spagan/yy-gen-playground:latest /bin/bash
 ```
 
 Once the container has started, you need to install the specific version of versioned-software. Edit first the `${HOME}/yy-gen-playground/scripts/install-versioned-sw.sh` if you need to adjust the version of the software you'd like to have available. Then execute the script

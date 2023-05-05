@@ -1,6 +1,16 @@
 FROM hepstore/rivet:3.1.8-hepmc3
 
-# Get software with fixed version
+# General software
+######### 
+# Python virtual environment
+#RUN apt -y install python3-pip python3-venv && \
+# python3 -m venv /home/ubuntu/py-venv && \
+# chown -R ubuntu:ubuntu /home/ubuntu/py-venv && \
+# echo '# Setup python3 virtual environment' >> /home/ubuntu/.bashrc && \
+# echo 'source /home/ubuntu/py-env/bin/activate' >> /home/ubuntu/.bashrc
+
+
+# Get specific software with fixed versions
 #########
 # APFEL
 RUN mkdir /code && cd /code && \
@@ -18,7 +28,9 @@ RUN mkdir /code && cd /code && \
 
 # hepm2dot (visualization)
 RUN cd /usr/local/src/ && git clone https://github.com/spagangriso/hepmc2dot.git && \
- cd hepmc2dot && pip install -r requirements.txt
+ cd hepmc2dot
+# && pip3 install -r requirements.txt
+
 
 # Get and compile versioned software. Will install when launching the container.
 #########
@@ -39,8 +51,9 @@ RUN cd /usr/local/src/pythia && \
 RUN mkdir -pv /usr/local/src/herwig
 ENV LHAPDF_DATA_PATH="/usr/local/share/LHAPDF"
 RUN cd /usr/local/src/herwig && \
- wget https://herwig.hepforge.org/downloads/herwig-bootstrap && chmod +x herwig-bootstrap && \
- ./herwig-bootstrap -j 4 --without-madgraph --with-hepmc=/usr/local --with-lhapdf=`lhapdf-config --prefix` --with-yoda=`yoda-config --prefix` --with-rivet=`rivet-config --prefix`  /usr/local/src/herwig/
+ wget https://herwig.hepforge.org/downloads/herwig-bootstrap && chmod +x herwig-bootstrap 
+# && \
+# ./herwig-bootstrap -j 4 --without-madgraph --with-hepmc=/usr/local --with-lhapdf=`lhapdf-config --prefix` --with-yoda=`yoda-config --prefix` --with-rivet=`rivet-config --prefix`  /usr/local/src/herwig/
 
 # Madgraph
 RUN mkdir -pv /usr/local/src/madgraph
@@ -59,7 +72,7 @@ RUN cd /usr/local/src/superchic && \
  cd superchic4.2 && make
 
 
-# Set system-wide settings
+# System-wide settings
 ######### 
 
 # Switch to ubuntu user
