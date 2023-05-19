@@ -37,7 +37,7 @@ The *versioned software* is pre-compiled and available in the `/usr/local/src/` 
 | Type | Name | Versions | Location  |
 |------|------|----------|-----------|
 | Generator | SuperChic | 4.12(*), 4.2 | `${SUPERCHIC_DIR}`|
-| Generator | Madgraph  | 2.9.5(*), 3.5.0.alpha | `${MADGRAPH_DIR}` |
+| Generator | Madgraph  | 2.9.5(*), 3.5.0 | `${MADGRAPH_DIR}` |
 | Parton Shower | Pythia8 | 8.245(*), 8.307, 8.309 | `${PYTHIA_DIR}` |
 | Parton Shower | Herwig  | latest | `${HERWIG_DIR}` |
 
