@@ -72,10 +72,13 @@ RUN cd /usr/local/src/superchic && \
  cd superchic4.2 && make
 
 # CepGen
-#RUN mkdir -pv /usr/local/src/cepgen
-#RUN cd /usr/local/src/cepgen && \
-# wget https://cepgen.hepforge.org/downloads?f=cepgen-1.0.1.tar.gz && tar xzf cepgen-1.0.1.tar.gz && \
-# cd cepgen
+RUN mkdir -pv /usr/local/src/cepgen
+RUN cd /usr/local/src/cepgen && \
+ git clone https://github.com/cepgen/cepgen.git && \
+ cd cepgen && git checkout 1.1.0 && \
+ CEPGEN_SOURCES=`pwd -P` && \
+ mkdir $CEPGEN_SOURCES/build && cd $CEPGEN_SOURCES/build && \
+ cmake $CEPGEN_SOURCES && make -j4
 
 # System-wide settings
 ######### 

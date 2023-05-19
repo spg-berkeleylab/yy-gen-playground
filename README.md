@@ -40,6 +40,7 @@ The *versioned software* is pre-compiled and available in the `/usr/local/src/` 
 | Generator | Madgraph  | 2.9.5(*), 3.5.0 | `${MADGRAPH_DIR}` |
 | Parton Shower | Pythia8 | 8.245(*), 8.307, 8.309 | `${PYTHIA_DIR}` |
 | Parton Shower | Herwig  | latest | `${HERWIG_DIR}` |
+| Generator     | CepGen  | 1.1.0  | `${CEPGEN_DIR}` |
 
 TODO: CepGen, Sherpa?
 
