@@ -83,6 +83,8 @@ RUN cd /usr/local/src/superchic && \
 RUN apt -y install sudo && \
  useradd -Ms /bin/bash yyfriend && \
  usermod -aG sudo yyfriend && \
+ chown -R yyfriend:yyfriend /work && \
+ chown -R yyfriend:yyfriend /usr/local/src/ && \
  echo "yyfriend:yygen" | chpasswd
 
 # Switch to ubuntu user
