@@ -87,5 +87,10 @@ RUN apt -y install sudo && \
  chown -R yyfriend:yyfriend /usr/local/src/ && \
  echo "yyfriend:yygen" | chpasswd
 
+# set user stuff
+RUN mkdir /home/yyfriend
+RUN echo 'alias ll="ls -ltrhF --color=auto"' >> /home/yyfriend/.bashrc
+RUN chown -R yyfriend:yyfriend /home/yyfriend
+
 # Switch to ubuntu user
 USER yyfriend
