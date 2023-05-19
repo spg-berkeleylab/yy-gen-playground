@@ -41,6 +41,9 @@ The *versioned software* is pre-compiled and available in the `/usr/local/src/` 
 | Parton Shower | Pythia8 | 8.245(*), 8.307, 8.309 | `${PYTHIA_DIR}` |
 | Parton Shower | Herwig  | latest | `${HERWIG_DIR}` |
 
+TODO: CepGen, Sherpa?
+
+
 (*) = default version
 
 The list of *pre-installed software* available system-wide is:
@@ -65,3 +68,9 @@ A set of utility scripts and program is available in this repository to facilita
 
 * `scripts/install-versioned-sw.sh` make versioned software available system-wide (see instructions above)
 * `scripts/create-graph-pdf.sh` read an HepMC file an create a PDF with event visualization (1 event per page)
+
+## Building the container
+If you need to modify the container, edit the `Dockerfile` and rebuild the container from the main folder containing this file:
+```bash
+docker build -t yy-gen-playground .
+```
