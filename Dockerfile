@@ -8,7 +8,7 @@ FROM hepstore/rivet:3.1.8-hepmc3
 # chown -R ubuntu:ubuntu /home/ubuntu/py-venv && \
 # echo '# Setup python3 virtual environment' >> /home/ubuntu/.bashrc && \
 # echo 'source /home/ubuntu/py-env/bin/activate' >> /home/ubuntu/.bashrc
-
+RUN apt -y install libgsl-dev
 
 # Get specific software with fixed versions
 #########
@@ -58,9 +58,9 @@ RUN cd /usr/local/src/herwig && \
 # Madgraph
 RUN mkdir -pv /usr/local/src/madgraph
 RUN cd /usr/local/src/madgraph && \
- wget https://launchpad.net/mg5amcnlo/2.0/2.9.x/+download/MG5_aMC_v2.9.5.tar.gz && tar xzf MG5_aMC_v2.9.5.tar.gz
+ wget https://launchpad.net/mg5amcnlo/lts/2.9.x/+download/MG5_aMC_v2.9.5.tar.gz && tar xzf MG5_aMC_v2.9.5.tar.gz
 RUN cd /usr/local/src/madgraph && \
- wget https://launchpad.net/mg5amcnlo/3.0/3.4.x/+download/MG5_aMC_v3.5.0.alpha.tar.gz && tar xzf MG5_aMC_v3.5.0.alpha.tar.gz
+ wget https://launchpad.net/mg5amcnlo/3.0/3.5.x/+download/MG5_aMC_v3.5.0.tar.gz && tar xzf MG5_aMC_v3.5.0.tar.gz
 
 # Superchic
 RUN mkdir -pv /usr/local/src/superchic
@@ -71,12 +71,19 @@ RUN cd /usr/local/src/superchic && \
  wget https://superchic.hepforge.org/superchic4.2.tar.gz && tar xzf superchic4.2.tar.gz && \
  cd superchic4.2 && make
 
+# CepGen
+#RUN mkdir -pv /usr/local/src/cepgen
+#RUN cd /usr/local/src/cepgen && \
+# wget https://cepgen.hepforge.org/downloads?f=cepgen-1.0.1.tar.gz && tar xzf cepgen-1.0.1.tar.gz && \
+# cd cepgen
 
 # System-wide settings
 ######### 
 # sudo, set user password as well for sudo
-RUN apt -y install sudo && usermod -aG sudo ubuntu && \
- echo "ubuntu:yygen" | chpasswd
+RUN apt -y install sudo && \
+ useradd -Ms /bin/bash yyfriend && \
+ usermod -aG sudo yyfriend && \
+ echo "yyfriend:yygen" | chpasswd
 
 # Switch to ubuntu user
-USER ubuntu
+USER yyfriend
