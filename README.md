@@ -31,6 +31,12 @@ docker pull patrickkirchgaesser/herwig
 ```
 and follow instructions on the [MCNet 2019 Herwig Tutorial](https://phab.hepforge.org/w/mcnet2019/).
 
+## Generating Samples: full chain example
+In this section we give some guidelines/example on how to generate and analyze samples within the container.
+Note: it's ok and sometimes needed to generate some sample in one container, save it in the `run` folder and then open it again in another container.
+
+Example workflows are provided in the `workflow` folder.
+Configuration files are stored in the `configs` folder.
 
 
 ## Available Software
@@ -49,6 +55,8 @@ The *versioned software* is pre-compiled and available in the `/usr/local/src/` 
 | Generator     | CepGen(*)  | 1.1.0  | `${CEPGEN_DIR}` |
 
 (*) = default version
+
+TODO: Look into LPAIR
 
 The list of *pre-installed software* available system-wide is:
 
