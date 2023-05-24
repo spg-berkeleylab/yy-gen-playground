@@ -63,9 +63,16 @@ The list of *pre-installed software* available system-wide is:
 | Analysis      | HighFive | 2.7.1 | hepstore/rivet |
 | Analysis      | hepmc2dot | custom | [web](https://github.com/spagangriso/hepmc2dot) |
 
-
-
 Several other utility packages are also installed (e.g. python3, latex, general c++ building tools, etc..) and not listed above.
+
+### Available PDFs
+PDFs are installed via the LHAPDF package. They are available in the `/usr/local/share/LHAPDF/` folder.
+To install a new set in the running container, just do:
+```bash
+lhapdf install pdfname
+```
+where `pdfname` is the name of the PDF (use `lhapdf list` to see a list of known PDFs).
+
 
 ## Utility scripts and programs
 A set of utility scripts and program is available in this repository to facilitate generating and analyzing common processes of interest.

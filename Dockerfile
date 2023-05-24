@@ -82,12 +82,27 @@ RUN cd /usr/local/src/cepgen && \
 
 # System-wide settings
 ######### 
+# LHAPDF sets, including superchic SF_MSHT20qed_nnlo
+RUN lhapdf install \
+  MMHT2014lo68cl \
+  MSTW2008nnlo68cl MSTW2008nlo68cl MSTW2008lo68cl \
+  LUXlep-NNPDF31_nlo_as_0118_luxqed LUXqed17_plus_PDF4LHC15_nnlo_100 LUXqed17_plus_PDF4LHC15_nnlo_30 LUXqed_plus_PDF4LHC15_nnlo_100 \
+  CT14qed_proton CT14nnlo CT14nlo CT14llo \
+  MMHT2015qed_nlo_elastic MMHT2015qed_nlo_inelastic MMHT2015qed_nnlo_elastic MMHT2015qed_nnlo_inelastic \
+  NNPDF23_lo_as_0119_qed NNPDF23_nlo_as_0119 NNPDF23_nlo_as_0119_qed NNPDF23_nnlo_as_0119 NNPDF23_nnlo_as_0119_qed
+RUN mkdir -pv /pdfin && cd /pdfin && \
+ wget https://superchic.hepforge.org/SF_MSHT20qed_nnlo.tar.gz && \
+ cd /usr/local/share/LHAPDF && \
+ tar xzf /pdfin/SF_MSHT20qed_nnlo.tar.gz && \
+ rm -rf /pdfin
+
 # sudo, set user password as well for sudo
 RUN apt -y install sudo && \
  useradd -Ms /bin/bash yyfriend && \
  usermod -aG sudo yyfriend && \
  chown -R yyfriend:yyfriend /work && \
  chown -R yyfriend:yyfriend /usr/local/src/ && \
+ chown -R yyfriend:yyfriend /usr/local/share/ && \
  echo "yyfriend:yygen" | chpasswd
 
 # set user stuff
