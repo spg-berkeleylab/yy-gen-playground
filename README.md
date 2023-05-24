@@ -7,7 +7,7 @@ The docker image is available as `spagan/yy-gen-playground` on dockerhub (see in
 Clone this repository locally, download the docker image and create a `run` folder to easily share the work across containers:
 ```
 git clone https://github.com/spg-berkeleylab/yy-gen-playground.git
-docker pull XXXXX
+docker pull spagan/yy-gen-playground
 mkdir run
 ```
 
