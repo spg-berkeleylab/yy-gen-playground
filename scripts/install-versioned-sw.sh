@@ -42,9 +42,9 @@ echo "export PATH=${MADGRAPH_DIR}/bin:${PATH}" >> ${HOME}/.bashrc
 echo "===> Installing Superchic ${SUPERCHIC_VERSION}"  | tee -a ${LOGFILE}
 SUPERCHIC_DIR="${SRC_DIR}/superchic/superchic${SUPERCHIC_VERSION}"
 export PATH=${SUPERCHIC_DIR}/bin:${PATH}
-export LD_LIBRARY_PATH=${SUPERCHIC_DIR}/LIB:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${SUPERCHIC_DIR}/lib:${LD_LIBRARY_PATH}
 echo "export PATH=${SUPERCHIC_DIR}/bin:${PATH}" >> ${HOME}/.bashrc
-echo "export LD_LIBRARY_PATH=${SUPERCHIC_DIR}/LIB:${LD_LIBRARY_PATH}" >> ${HOME}/.bashrc
+echo "export LD_LIBRARY_PATH=${SUPERCHIC_DIR}/lib:${LD_LIBRARY_PATH}" >> ${HOME}/.bashrc
 
 # CepGen
 echo "===> Installing CepGen ${CEPGEN_VERSION}" | tee -a ${LOGFILE}
