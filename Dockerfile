@@ -8,7 +8,7 @@ FROM hepstore/rivet:3.1.8-hepmc3
 # chown -R ubuntu:ubuntu /home/ubuntu/py-venv && \
 # echo '# Setup python3 virtual environment' >> /home/ubuntu/.bashrc && \
 # echo 'source /home/ubuntu/py-env/bin/activate' >> /home/ubuntu/.bashrc
-RUN apt -y install libgsl-dev
+RUN apt -y install libgsl-dev poppler-utils graphviz
 
 # Get specific software with fixed versions
 #########
@@ -39,13 +39,13 @@ RUN cd /usr/local/src/ && git clone https://github.com/spagangriso/hepmc2dot.git
 RUN mkdir -pv /usr/local/src/pythia
 RUN cd /usr/local/src/pythia && \
  wget https://pythia.org/download/pythia83/pythia8307.tgz && tar xzf pythia8307.tgz && \
- cd pythia8307 && ./configure && make -j4
+ cd pythia8307 && ./configure --prefix=/usr/local --with-hepmc3 --with-lhapdf6 && make -j4
 RUN cd /usr/local/src/pythia && \
  wget https://pythia.org/download/pythia82/pythia8245.tgz && tar xzf pythia8245.tgz && \
- cd pythia8245 && ./configure && make -j4
+ cd pythia8245 && ./configure --prefix=/usr/local --with-hepmc3 --with-lhapdf6 && make -j4
 RUN cd /usr/local/src/pythia && \
  wget https://pythia.org/download/pythia83/pythia8309.tgz && tar xzf pythia8309.tgz && \
- cd pythia8309 && ./configure && make -j4
+ cd pythia8309 && ./configure --prefix=/usr/local --with-hepmc3 --with-lhapdf6 && make -j4
 
 # Herwig
 RUN mkdir -pv /usr/local/src/herwig
@@ -88,6 +88,7 @@ RUN lhapdf install \
   MSTW2008nnlo68cl MSTW2008nlo68cl MSTW2008lo68cl \
   LUXlep-NNPDF31_nlo_as_0118_luxqed LUXqed17_plus_PDF4LHC15_nnlo_100 LUXqed17_plus_PDF4LHC15_nnlo_30 LUXqed_plus_PDF4LHC15_nnlo_100 \
   CT14qed_proton CT14nnlo CT14nlo CT14llo \
+  cteq6l1 cteq61 cteq66 \
   MMHT2015qed_nlo_elastic MMHT2015qed_nlo_inelastic MMHT2015qed_nnlo_elastic MMHT2015qed_nnlo_inelastic \
   NNPDF23_lo_as_0119_qed NNPDF23_nlo_as_0119 NNPDF23_nlo_as_0119_qed NNPDF23_nnlo_as_0119 NNPDF23_nnlo_as_0119_qed
 RUN mkdir -pv /pdfin && cd /pdfin && \

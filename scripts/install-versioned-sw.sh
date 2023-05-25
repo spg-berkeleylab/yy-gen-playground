@@ -11,6 +11,8 @@ CEPGEN_VERSION="1.1.0"
 # Utilities and common settings
 SUDO=""
 USER=`whoami`
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+YYGEN_DIR=`dirname ${SCRIPT_DIR}`
 INITIAL_DIR=${PWD}
 LOGFILE="${INITIAL_DIR}/${install-sw.log}"
 rm -f ${LOGFILE}
@@ -64,6 +66,12 @@ if [ "${cepgen_ver}" != ${CEPGEN_VERSION} ]; then
 fi
 cd build
 ${SUDO} make install >> ${LOGFILE} 2>&1
+
+# Local executables
+echo "===> Compiling yy-gen-playground programs in 'source/'"  | tee -a ${LOGFILE}
+cd ${YYGEN_DIR}/source
+make >> ${LOGFILE} 2>&1
+
 
 # Back to initial folder
 cd ${INITIAL_DIR}
