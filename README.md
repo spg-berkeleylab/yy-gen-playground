@@ -43,7 +43,10 @@ A few notes on the structure of the repository:
 
 These workflow scripts are meant to be either executed as-is, possibly tweaking or changing the configuration files, or just taken as example to produce new workflow or play interactively using similar commands. 
 
-### Superchic + Pythia8
+### Workflows 
+
+**Superchic + Pythia8**
+
 As an example on how to use the software in the container, the `workflow/sc-py8.sh` script
 provides a functional example that can be configured/tuned editing the initial part or used as example to execute commands interactively. 
 
@@ -52,6 +55,13 @@ The script will:
 * shower produced events using Pythia8 and the provided configuration (e.g. `configs/py8-sc-ee.conf`);
 * run a dedicated rivet routine to get plots that can be compared to other setups;
 * run a visualization script that produces a PDF with the structure of the event record for the events produced.
+
+### Configurations
+A quick guide to available configurations in the `config/` folder:
+* `sc-yyll-*` are SuperChic configuration files for the $$yy\to ll$$ process (ee=elastic; sd,ds=single-diffractive; dd=double-diffractive).
+* `py8-sc-*` are pythia8 configurations to shower SuperChic LHE events
+* `py8-mg-*`
+
 
 ## Available Software
 The image contains several software packages that are useful for these studies. They can be grouped into two categories:
