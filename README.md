@@ -41,8 +41,8 @@ Configuration files are stored in the `configs` folder.
 These workflow scripts are meant to be either executed as-is, possibly tweaking or changing the configuration files, or just taken as example to produce new workflow or play interactively using similar commands. 
 
 ### Superchic + Pythia8
-As an example on how to use the software in the container, the `workflow/sc-py8.sh` script.
-The script provides a functional example that can be configured/tuned editing the initial part. 
+As an example on how to use the software in the container, the `workflow/sc-py8.sh` script
+provides a functional example that can be configured/tuned editing the initial part or used as example to execute commands interactively. 
 
 The script will:
 * generate SuperChic LHE files for the given process in the configuration file (e.g. `configs/sc-yyll-ee-160.DAT`);
