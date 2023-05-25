@@ -12,7 +12,7 @@ CEPGEN_VERSION="1.1.0"
 SUDO=""
 USER=`whoami`
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-YYGEN_DIR=`dirname ${SCRIPT_DIR}`
+export YYGEN_DIR=`dirname ${SCRIPT_DIR}`
 INITIAL_DIR=${PWD}
 LOGFILE="${INITIAL_DIR}/${install-sw.log}"
 rm -f ${LOGFILE}
@@ -24,7 +24,7 @@ SRC_DIR="/usr/local/src"
 
 # Pythia
 echo "===> Installing Pythia ${PYTHIA_VERSION}" | tee -a ${LOGFILE}
-PYTHIA_DIR="${SRC_DIR}/pythia/pythia${PYTHIA_VERSION//./}"
+export PYTHIA_DIR="${SRC_DIR}/pythia/pythia${PYTHIA_VERSION//./}"
 cd ${PYTHIA_DIR}
 ${SUDO} make install >> ${LOGFILE} 2>&1
 
@@ -35,14 +35,14 @@ ${SUDO} make install >> ${LOGFILE} 2>&1
 
 # Madgraph
 echo "===> Installing Madgraph ${MADGRAPH_VERSION}"  | tee -a ${LOGFILE}
-MADGRAPH_DIR="${SRC_DIR}/madgraph/MG5_aMC_v${MADGRAPH_VERSION//./_}"
+export MADGRAPH_DIR="${SRC_DIR}/madgraph/MG5_aMC_v${MADGRAPH_VERSION//./_}"
 cd ${MADGRAPH_DIR}
 export PATH=${MADGRAPH_DIR}/bin:${PATH}
 echo "export PATH=${MADGRAPH_DIR}/bin:${PATH}" >> ${HOME}/.bashrc
 
 # Superchic
 echo "===> Installing Superchic ${SUPERCHIC_VERSION}"  | tee -a ${LOGFILE}
-SUPERCHIC_DIR="${SRC_DIR}/superchic/superchic${SUPERCHIC_VERSION}"
+export SUPERCHIC_DIR="${SRC_DIR}/superchic/superchic${SUPERCHIC_VERSION}"
 export PATH=${SUPERCHIC_DIR}/bin:${PATH}
 export LD_LIBRARY_PATH=${SUPERCHIC_DIR}/lib:${LD_LIBRARY_PATH}
 echo "export PATH=${SUPERCHIC_DIR}/bin:${PATH}" >> ${HOME}/.bashrc
@@ -50,7 +50,7 @@ echo "export LD_LIBRARY_PATH=${SUPERCHIC_DIR}/lib:${LD_LIBRARY_PATH}" >> ${HOME}
 
 # CepGen
 echo "===> Installing CepGen ${CEPGEN_VERSION}" | tee -a ${LOGFILE}
-CEPGEN_DIR="${SRC_DIR}/cepgen/cepgen"
+export CEPGEN_DIR="${SRC_DIR}/cepgen/cepgen"
 cd ${CEPGEN_DIR}
 #.... check tag, if different from requested version, check it out and compile
 cepgen_ver=`git describe --tags`
