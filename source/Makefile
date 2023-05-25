@@ -9,9 +9,7 @@ install: run-shower-pythia RivetAnalysis_yy.so
 	mv $^ ${YYGEN_DIR}/bin/
 
 run-shower-pythia: run-shower-pythia.cc
-	g++ -O2 -ansi -pedantic -W -Wall -Wshadow $< -o $@  -lpythia8 -lLHAPDF -lHepMC -ldl
-#g++ -O2 -ansi -pedantic -W -Wall -Wshadow -I$(PYTHIA_DIR)/include main20.cc -o main20.exe  -L$(PYTHIA_DIR)/lib -lpythia8 -lHepMC -lLHAPDF -ldl
+	g++ -std=c++11 -O2 -pedantic -W -Wall -Wshadow $< -o $@  -lpythia8 -lLHAPDF -lHepMC -ldl
 
 RivetAnalysis_yy.so: RivetAnalysis_yy.cc
 	rivet-build $@ $<
-	rivet-build RivetAnalysis_yy.so RivetAnalysis_yy.cc
