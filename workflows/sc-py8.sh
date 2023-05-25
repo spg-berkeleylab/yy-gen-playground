@@ -47,7 +47,7 @@ cd ${OUT_DIR}
 
 # Run Pythia8
 echo "Showering events with Pythia8"
-${YYGEN_DIR}/source/run-shower-pythia evrecs/${RUN_PREFIX}.lhe ${YYGEN_DIR}/configs/${PY8_CONFIG} ${RUN_PREFIX}.hepmc
+${YYGEN_DIR}/bin/run-shower-pythia evrecs/${RUN_PREFIX}.lhe ${YYGEN_DIR}/configs/${PY8_CONFIG} ${RUN_PREFIX}.hepmc
 
 # Creating rivet plots
 echo "Creating Rivet plots"

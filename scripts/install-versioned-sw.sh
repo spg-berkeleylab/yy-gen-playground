@@ -71,6 +71,8 @@ ${SUDO} make install >> ${LOGFILE} 2>&1
 echo "===> Compiling yy-gen-playground programs in 'source/'"  | tee -a ${LOGFILE}
 cd ${YYGEN_DIR}/source
 make >> ${LOGFILE} 2>&1
+make install >> ${LOGFILE} 2>&1
+export PATH=${YYGEN_DIR}/bin:${PATH}
 
 
 # Back to initial folder
