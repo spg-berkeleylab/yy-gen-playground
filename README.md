@@ -38,17 +38,17 @@ Note: it's ok and sometimes needed to generate some sample in one container, sav
 Example scripts carrying out specific "workflows" are provided in the `workflow` folder.
 Configuration files are stored in the `configs` folder.
 
+These workflow scripts are meant to be either executed as-is, possibly tweaking or changing the configuration files, or just taken as example to produce new workflow or play interactively using similar commands. 
+
 ### Superchic + Pythia8
-As an example on how to use the software in the container, the `workflow/sc-py8-yyll.sh` script will generate a $$\gamma\gamma\to ll$$ process.
-In more detail, the script provides a functional example that can be configured/tuned editing the initial part. 
+As an example on how to use the software in the container, the `workflow/sc-py8.sh` script.
+The script provides a functional example that can be configured/tuned editing the initial part. 
 
 The script will:
-* generate SuperChic LHE files for the given process in the configuration file;
-* shower produced events using Pythia8;
-* run a standard rivet routine to get plots that can be compared to other setups;
+* generate SuperChic LHE files for the given process in the configuration file (e.g. `configs/sc-yyll-ee-160.DAT`);
+* shower produced events using Pythia8 and the provided configuration (e.g. `configs/py8-sc-ee.conf`);
+* run a dedicated rivet routine to get plots that can be compared to other setups;
 * run a visualization script that produces a PDF with the structure of the event record for the events produced.
-
-It is meant to be either executed as-is, maybe tweaking or changing the configuration files, or just taken as example to produce new workflow or play interactively using similar commands. 
 
 ## Available Software
 The image contains several software packages that are useful for these studies. They can be grouped into two categories:
