@@ -5,6 +5,8 @@ The docker image is available as `spagan/yy-gen-playground` on dockerhub (see in
 
 Pre-requisites: git, [docker](https://docs.docker.com/get-docker/)
 
+This container was developed in the context of the [Workshop on the modeling of photon-induced processes](https://conference.ippp.dur.ac.uk/event/1193/)
+
 ## Getting started
 Clone this repository locally, download the docker image and create a `run` folder to easily share the work across containers:
 ```
