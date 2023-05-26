@@ -8,7 +8,7 @@ FROM hepstore/rivet:3.1.8-hepmc3
 # chown -R ubuntu:ubuntu /home/ubuntu/py-venv && \
 # echo '# Setup python3 virtual environment' >> /home/ubuntu/.bashrc && \
 # echo 'source /home/ubuntu/py-env/bin/activate' >> /home/ubuntu/.bashrc
-RUN apt -y install libgsl-dev poppler-utils graphviz
+RUN apt -y install libgsl-dev poppler-utils graphviz libglu1-mesa
 
 # Get specific software with fixed versions
 #########
