@@ -60,7 +60,23 @@ The script will:
 A quick guide to available configurations in the `config/` folder:
 * `sc-yyll-*` are SuperChic configuration files for the $$yy\to ll$$ process (ee=elastic; sd,ds=single-diffractive; dd=double-diffractive).
 * `py8-sc-*` are pythia8 configurations to shower SuperChic LHE events
-* `py8-mg-*`
+* `py8-mg-*` are pythia8 configurations to shower MadGraph LHE events
+
+### Analysis
+
+A simple rivet analysis script is available in `analysis` directory. The analysis `RivetAnalysis_yy.cc` contains basic plots and selction for $$yy\to ll$$ process. To run rivet analysis only one can use `setup_analysis.sh` script in the `scripts` directory. After any change is made in the analysis script `RivetAnalysis_yy.cc` you need to compile it:
+```bash
+rivet-build RivetAnalysis_yy.so RivetAnalysis_yy.cc
+```
+Then to run the analysis on your favorite hepmc file run:
+```bash
+rivet -a RivetAnalysis_yy  filename.hepmc
+```
+To create plots execute:
+```bash
+rivet-mkhtml Rivet.yoda:filename
+```
+Now, plots in png and pdf formats are created, you can also see all of them by opening `RivetAnalysis_yy/index.html`.
 
 
 ## Available Software
