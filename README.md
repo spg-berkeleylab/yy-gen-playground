@@ -56,6 +56,10 @@ The script will:
 * run a dedicated rivet routine to get plots that can be compared to other setups;
 * run a visualization script that produces a PDF with the structure of the event record for the events produced.
 
+**Madgraph + Pythia8**
+An example workflow for Madgraph and Pythia8 is in the `workflow/mg-py8.sh` script.
+The script is analogous to the Superchic + Pythia workflow in terms of features.
+
 ### Configurations
 A quick guide to available configurations in the `config/` folder:
 * `sc-yyll-*` are SuperChic configuration files for the $$yy\to ll$$ process (ee=elastic; sd,ds=single-diffractive; dd=double-diffractive).
