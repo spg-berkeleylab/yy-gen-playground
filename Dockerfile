@@ -90,7 +90,7 @@ RUN lhapdf install \
   CT14qed_proton CT14nnlo CT14nlo CT14llo \
   cteq6l1 cteq61 cteq66 \
   MMHT2015qed_nlo_elastic MMHT2015qed_nlo_inelastic MMHT2015qed_nnlo_elastic MMHT2015qed_nnlo_inelastic \
-  NNPDF23_lo_as_0119_qed NNPDF23_nlo_as_0119 NNPDF23_nlo_as_0119_qed NNPDF23_nnlo_as_0119 NNPDF23_nnlo_as_0119_qed
+  NNPDF23_lo_as_0119_qed NNPDF23_nlo_as_0119 NNPDF23_nlo_as_0119_qed NNPDF23_nnlo_as_0118 NNPDF23_nnlo_as_0118_qed NNPDF23_nnlo_as_0119 NNPDF23_nnlo_as_0119_qed
 RUN mkdir -pv /pdfin && cd /pdfin && \
  wget https://superchic.hepforge.org/SF_MSHT20qed_nnlo.tar.gz && \
  cd /usr/local/share/LHAPDF && \
