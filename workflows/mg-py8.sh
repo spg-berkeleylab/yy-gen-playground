@@ -9,6 +9,8 @@ PY8_CONFIG="py8-mg-ee.conf" # pythia8 configuration: elastic
 # Automatic Settings
 OUT_DIR=$PWD
 RUN_PREFIX=`basename $PWD` # used to rename stuff, by default use folder name
+RIVET_ANALYSIS_PATH=$PWD
+RIVET_DATA_PATH=$PWD
 
 # Settings printout
 echo "=========================="
@@ -40,7 +42,13 @@ ${YYGEN_DIR}/bin/run-shower-pythia PROC_sm_0/Events/run_01/unweighted_events.lhe
 
 # Creating rivet plots
 echo "Creating Rivet plots"
-## TODO..
+echo "Compiling Rivet analysis"
+cd ${OUT_DIR}
+cp ${YYGEN_DIR}/analysis/RivetAnalysis_yy.cc .
+rivet-build RivetAnalysis_yy.so RivetAnalysis_yy.cc
+rivet -a RivetAnalysis_yy  ${RUN_PREFIX}.hepmc
+rivet-mkhtml Rivet.yoda:${RUN_PREFIX}
+echo "End of Rivet analysis!"
 
 # Visualize a few events
 echo "Creating event visualization"
