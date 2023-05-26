@@ -3,7 +3,7 @@
 Develop a docker container for quickly and easily test solution for common (and new) yy generators.
 The docker image is available as `spagan/yy-gen-playground` on dockerhub (see instructions below).
 
-Pre-requisites: [docker](https://docs.docker.com/get-docker/)
+Pre-requisites: git, [docker](https://docs.docker.com/get-docker/)
 
 ## Getting started
 Clone this repository locally, download the docker image and create a `run` folder to easily share the work across containers:
