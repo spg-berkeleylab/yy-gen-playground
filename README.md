@@ -72,7 +72,11 @@ A quick guide to available configurations in the `config/` folder:
 
 ### Analysis
 
-A simple rivet analysis script is available in `analysis` directory. The analysis `RivetAnalysis_yy.cc` contains basic plots and selction for $$yy\to ll$$ process. To run rivet analysis only one can use `setup_analysis.sh` script in the `scripts` directory. After any change is made in the analysis script `RivetAnalysis_yy.cc` you need to compile it:
+A simple rivet analysis script is available in the `source` directory. The analysis `RivetAnalysis_yy.cc` contains basic plots and selction for $$yy\to ll$$ process. To run only the rivet analysis one can use `run_analysis.sh` script in the `scripts` directory, providing the hepmc file as an argument:
+```bash
+sh scripts/run_analysis.sh filename.hepmc
+```
+After any change is made in the analysis script `RivetAnalysis_yy.cc` you need to compile it:
 ```bash
 rivet-build RivetAnalysis_yy.so RivetAnalysis_yy.cc
 ```

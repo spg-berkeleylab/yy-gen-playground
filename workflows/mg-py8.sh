@@ -44,7 +44,7 @@ ${YYGEN_DIR}/bin/run-shower-pythia PROC_sm_0/Events/run_01/unweighted_events.lhe
 echo "Creating Rivet plots"
 echo "Compiling Rivet analysis"
 cd ${OUT_DIR}
-cp ${YYGEN_DIR}/analysis/RivetAnalysis_yy.cc .
+cp ${YYGEN_DIR}/source/RivetAnalysis_yy.cc .
 rivet-build RivetAnalysis_yy.so RivetAnalysis_yy.cc
 rivet -a RivetAnalysis_yy  ${RUN_PREFIX}.hepmc
 rivet-mkhtml Rivet.yoda:${RUN_PREFIX}
