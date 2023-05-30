@@ -66,13 +66,13 @@ The script is analogous to the Superchic + Pythia workflow in terms of features.
 
 ### Configurations
 A quick guide to available configurations in the `config/` folder:
-* `sc-yyll-*` are SuperChic configuration files for the $$yy\to ll$$ process (ee=elastic; sd,ds=single-diffractive; dd=double-diffractive).
+* `sc-yyll-*` are SuperChic configuration files for the $\gamma\gamma\to ll$` process (ee=elastic; sd,ds=single-diffractive; dd=double-diffractive).
 * `py8-sc-*` are pythia8 configurations to shower SuperChic LHE events
 * `py8-mg-*` are pythia8 configurations to shower MadGraph LHE events
 
 ### Analysis
 
-A simple rivet analysis script is available in the `source` directory. The analysis `RivetAnalysis_yy.cc` contains basic plots and selction for $$yy\to ll$$ process. To run only the rivet analysis one can use `run_analysis.sh` script in the `scripts` directory, providing the hepmc file as an argument:
+A simple rivet analysis script is available in the `source` directory. The analysis `RivetAnalysis_yy.cc` contains basic plots and selction for $\gamma\gamma\to ll$ process. To run only the rivet analysis one can use `run_analysis.sh` script in the `scripts` directory, providing the hepmc file as an argument:
 ```bash
 sh scripts/run_analysis.sh filename.hepmc
 ```
@@ -103,8 +103,8 @@ The *versioned software* is pre-compiled and available in the `/usr/local/src/` 
 | Generator | SuperChic | 4.12(*), 4.2 | `${SUPERCHIC_DIR}`|
 | Generator | Madgraph  | 2.9.5(*), 3.5.0 | `${MADGRAPH_DIR}` |
 | Parton Shower | Pythia8 | 8.245(*), 8.307, 8.309 | `${PYTHIA_DIR}` |
-| Parton Shower | Herwig  | latest | `herwigcollaboration/herwig-7.3:7.3.0` image |
-| Generator     | CepGen(*)  | 1.1.0  | `${CEPGEN_DIR}` |
+| Parton Shower | Herwig  | 7.3.0 | `herwigcollaboration/herwig-7.3:7.3.0` image |
+| Generator     | CepGen  | 1.1.0(*)  | `${CEPGEN_DIR}` |
 
 (*) = default version
 
