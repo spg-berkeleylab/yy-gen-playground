@@ -140,6 +140,21 @@ A set of utility scripts and program is available in this repository to facilita
 * `scripts/install-versioned-sw.sh` make versioned software available system-wide (see instructions above)
 * `scripts/create-graph-pdf.sh` read an HepMC file an create a PDF with event visualization (1 event per page)
 
+## Attaching to a previously-created container
+You can see the list of containers you've created with:
+```bash
+docler ps -a
+```
+
+to start a container that has exited you can use
+```bash
+docker start container_id
+```
+where `container_id` is the container ID (you can get the ID of the latest container that exited with `docker -l -q`). Once started it will show in the list when you type `docker ps` and you can start a shell inside the container by doing 
+```bash
+docker attach container_id
+```
+
 ## Building the container
 If you need to modify the container, edit the `Dockerfile` and rebuild the container from the main folder containing this file:
 ```bash
