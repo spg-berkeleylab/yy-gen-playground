@@ -31,9 +31,9 @@ If you want to run with a different version, the easiest is to create a separate
 
 Note that for technical reasons `Herwig` is not available in this container, but they provide a separate image that you can get with:
 ```bash
-docker pull patrickkirchgaesser/herwig
+docker pull herwigcollaboration/herwig-7.3:7.3.0
 ```
-and follow instructions on the [MCNet 2019 Herwig Tutorial](https://phab.hepforge.org/w/mcnet2019/).
+and follow instructions on the [Herwig Tutorial](https://phab.hepforge.org/w/herwigtutorial/).
 
 ## Generating Samples: full chain examples
 In this section we give some guidelines/examples on how to generate and analyze samples within the container.
