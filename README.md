@@ -66,7 +66,7 @@ The script is analogous to the Superchic + Pythia workflow in terms of features.
 
 ### Configurations
 A quick guide to available configurations in the `config/` folder:
-* `sc-yyll-*` are SuperChic configuration files for the $\gamma\gamma\to ll$` process (ee=elastic; sd,ds=single-diffractive; dd=double-diffractive).
+* `sc-yyll-*` are SuperChic configuration files for the $\gamma\gamma\to ll$ process (ee=elastic; sd,ds=single-diffractive; dd=double-diffractive).
 * `py8-sc-*` are pythia8 configurations to shower SuperChic LHE events
 * `py8-mg-*` are pythia8 configurations to shower MadGraph LHE events
 
