@@ -70,9 +70,9 @@ ${SUDO} make install >> ${LOGFILE} 2>&1
 
 # Sherpa
 echo "===> Installing Sherpa ${SHERPA_VERSION}" | tee -a ${LOGFILE}
-export SHERPA_DIR="${SRC_DIR}/sherpa/"
+export SHERPA_DIR="${SRC_DIR}/sherpa/sherpa/"
 cd ${SHERPA_DIR}/build
-cmake --install .
+${SUDO} cmake --install . >> ${LOGFILE} 2>&1
 
 
 # Local executables

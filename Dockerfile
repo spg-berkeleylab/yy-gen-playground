@@ -83,7 +83,7 @@ RUN cd /usr/local/src/cepgen && \
 # Sherpa (master branch)
 RUN mkdir -pv /usr/local/src/sherpa
 RUN cd /usr/local/src/sherpa && \
- git clont https://gitlab.com/sherpa-team/sherpa.git && \
+ git clone https://gitlab.com/sherpa-team/sherpa.git && \
  cd sherpa && mkdir build && cd build && \
  cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DSHERPA_ENABLE_RIVET=ON -DSHERPA_ENABLE_HEPMC3=ON -S ../ -B . && \
  cmake --build . -j 4
