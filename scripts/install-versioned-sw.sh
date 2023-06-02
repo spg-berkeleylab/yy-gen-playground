@@ -3,10 +3,11 @@
 
 # List of versions (see table in README.md file for available versions)
 PYTHIA_VERSION="8.245"
-HERWIG_VERSION="" # latest via boostrap install
+HERWIG_VERSION="" # via separate container
 MADGRAPH_VERSION="2.9.5"
 SUPERCHIC_VERSION="4.12"
 CEPGEN_VERSION="1.1.0"
+SHERPA_VERSION="" # latest version from master branch
 
 # Utilities and common settings
 SUDO=""
@@ -28,7 +29,7 @@ export PYTHIA_DIR="${SRC_DIR}/pythia/pythia${PYTHIA_VERSION//./}"
 cd ${PYTHIA_DIR}
 ${SUDO} make install >> ${LOGFILE} 2>&1
 
-# Herwig
+# Herwig (provided via separate container)
 #echo "===> Installing latest Herwig"  | tee -a ${LOGFILE}
 #HERWIG_DIR=${SRC_DIR}/herwig/
 #source ${HERWIG_DIR}/bin/activate
@@ -66,6 +67,13 @@ if [ "${cepgen_ver}" != ${CEPGEN_VERSION} ]; then
 fi
 cd build
 ${SUDO} make install >> ${LOGFILE} 2>&1
+
+# Sherpa
+echo "===> Installing Sherpa ${SHERPA_VERSION}" | tee -a ${LOGFILE}
+export SHERPA_DIR="${SRC_DIR}/sherpa/"
+cd ${SHERPA_DIR}/build
+cmake --install .
+
 
 # Local executables
 echo "===> Compiling yy-gen-playground programs in 'source/'"  | tee -a ${LOGFILE}

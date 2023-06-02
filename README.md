@@ -105,6 +105,7 @@ The *versioned software* is pre-compiled and available in the `/usr/local/src/` 
 | Parton Shower | Pythia8 | 8.245(*), 8.307, 8.309 | `${PYTHIA_DIR}` |
 | Parton Shower | Herwig  | 7.3.0 | `herwigcollaboration/herwig-7.3:7.3.0` image |
 | Generator     | CepGen  | 1.1.0(*)  | `${CEPGEN_DIR}` |
+| Generator     | Sherpa  | master(*) | `${SHERPA_DIR}` |
 
 (*) = default version
 
@@ -138,7 +139,7 @@ where `pdfname` is the name of the PDF (use `lhapdf list` to see a list of known
 A set of utility scripts and program is available in this repository to facilitate generating and analyzing common processes of interest.
 
 * `scripts/install-versioned-sw.sh` make versioned software available system-wide (see instructions above)
-* `scripts/create-graph-pdf.sh` read an HepMC file an create a PDF with event visualization (1 event per page)
+* `create-graph-pdf.sh` and `hepmc2dot.py` (available within $PATH, from /usr/local/src/hepmc2dot) read an HepMC file an create a PDF with event visualization (1 event per page); the `hepmc2dot.py` just creates the `.dot` file that can be used as input to `create-graph-pdf.sh` instead of the hepmc file if more control is needed (e.g. skipping some number of events or limiting the number of max events visualized)
 
 ## Attaching to a previously-created container
 You can see the list of containers you've created with:

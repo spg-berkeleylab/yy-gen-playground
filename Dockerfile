@@ -8,7 +8,7 @@ FROM hepstore/rivet:3.1.8-hepmc3
 # chown -R ubuntu:ubuntu /home/ubuntu/py-venv && \
 # echo '# Setup python3 virtual environment' >> /home/ubuntu/.bashrc && \
 # echo 'source /home/ubuntu/py-env/bin/activate' >> /home/ubuntu/.bashrc
-RUN apt -y install libgsl-dev poppler-utils graphviz libglu1-mesa
+RUN apt -y install libgsl-dev poppler-utils graphviz libglu1-mesa libzip-dev vim
 
 # Get specific software with fixed versions
 #########
@@ -26,7 +26,7 @@ RUN mkdir /code && cd /code && \
   make -j 4 && make install && \
   cd ${HOME} && rm -rf /code
 
-# hepm2dot (visualization)
+# hepmc2dot (visualization)
 RUN cd /usr/local/src/ && git clone https://github.com/spagangriso/hepmc2dot.git && \
  cd hepmc2dot
 # && pip3 install -r requirements.txt
@@ -80,6 +80,14 @@ RUN cd /usr/local/src/cepgen && \
  mkdir $CEPGEN_SOURCES/build && cd $CEPGEN_SOURCES/build && \
  cmake $CEPGEN_SOURCES && make -j4
 
+# Sherpa (master branch)
+RUN mkdir -pv /usr/local/src/sherpa
+RUN cd /usr/local/src/sherpa && \
+ git clont https://gitlab.com/sherpa-team/sherpa.git && \
+ cd sherpa && mkdir build && cd build && \
+ cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DSHERPA_ENABLE_RIVET=ON -DSHERPA_ENABLE_HEPMC3=ON -S ../ -B . && \
+ cmake --build . -j 4
+
 # System-wide settings
 ######### 
 # LHAPDF sets, including superchic SF_MSHT20qed_nnlo
@@ -109,6 +117,7 @@ RUN apt -y install sudo && \
 # set user stuff
 RUN mkdir /home/yyfriend
 RUN echo 'alias ll="ls -ltrhF --color=auto"' >> /home/yyfriend/.bashrc
+RUN echo "export PATH=/usr/local/src/hepmc2dot/:${PATH}" >> /home/yyfriend/.bashrc
 RUN chown -R yyfriend:yyfriend /home/yyfriend
 
 # Switch to ubuntu user
