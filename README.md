@@ -33,7 +33,7 @@ Note that for technical reasons `Herwig` is not available in this container, but
 ```bash
 docker pull herwigcollaboration/herwig-7.3:7.3.0
 ```
-and follow the instructions on the dedicated [Herwig Tutorial](https://phab.hepforge.org/w/herwigtutorial/photoninduced/) (credit to: Aidin Masouminia).
+and follow the instructions on the dedicated [Herwig Tutorial](https://phab.hepforge.org/w/herwigtutorial/) and the additional instructions specific for this workshop [here](https://phab.hepforge.org/w/herwigtutorial/photoninduced/) (credit to: Aidin Masouminia).
 
 ## Generating Samples: full chain examples
 In this section we give some guidelines/examples on how to generate and analyze samples within the container.
