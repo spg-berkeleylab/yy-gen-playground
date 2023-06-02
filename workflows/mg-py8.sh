@@ -19,7 +19,7 @@ echo "=========================="
 echo "Run folder: ${OUT_DIR}"
 echo "Output folder: ${OUT_DIR}"
 echo "Source folder: ${YYGEN_DIR}"
-echo "MG Config: ${MG_CONFIG}"
+echo "MG Config: ${MG_CONFIG_PROCCARD}"
 echo "Py8 Config: ${PY8_CONFIG}"
 echo "=========================="
 
@@ -27,7 +27,7 @@ echo "=========================="
 echo "Running madgraph"
 cd ${OUT_DIR}
 cp ${YYGEN_DIR}/configs/${MG_CONFIG_PROCCARD} ./
-mg5_aMC -f ${MG_CONFIG}
+mg5_aMC -f ${MG_CONFIG_PROCCARD}
 cp ${YYGEN_DIR}/configs/${MG_CONFIG_RUNCARD} ./PROC_sm_0/Cards/run_card.dat
 cp ${YYGEN_DIR}/configs/mg-param_card-atlas.conf ./PROC_sm_0/Cards/param_card.dat
 
