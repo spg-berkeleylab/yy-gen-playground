@@ -2,7 +2,7 @@
 ## Generate SuperChic4 yy->ll process, shower with Pythia8
 
 # Settings
-SC_CONFIG="sc-yyll-ee-160.DAT" # input SuperChic configuration from configs/ folder
+SC_CONFIG="sc-yyll-ee.DAT" # input SuperChic configuration from configs/ folder
 PY8_CONFIG="py8-sc-ee.conf" # pythia8 configuration: elastic
 
 # Automatic Settings
@@ -63,8 +63,9 @@ rivet -a RivetAnalysis_yy  ${RUN_PREFIX}.hepmc
 rivet-mkhtml Rivet.yoda:${RUN_PREFIX}
 echo "End of Rivet analysis!"
 
-# Visualize a few events
+# Visualize the first 10 events
 echo "Creating event visualization"
-${YYGEN_DIR}/scripts/create-graph-pdf.sh ${RUN_PREFIX}.hepmc
+hepmc2dot.py ${RUN_PREFIX}.hepmc ${RUN_PREFIX}.hepmc.dot 10
+create-graph-pdf.sh ${RUN_PREFIX}.hepmc.dot
 
 echo "All Done!"

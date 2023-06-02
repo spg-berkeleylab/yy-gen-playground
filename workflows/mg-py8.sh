@@ -53,7 +53,9 @@ echo "End of Rivet analysis!"
 
 # Visualize a few events
 echo "Creating event visualization"
-${YYGEN_DIR}/scripts/create-graph-pdf.sh ${RUN_PREFIX}.hepmc
+echo "Creating event visualization"
+hepmc2dot.py ${RUN_PREFIX}.hepmc ${RUN_PREFIX}.hepmc.dot 10
+create-graph-pdf.sh ${RUN_PREFIX}.hepmc.dot
 
 echo "All Done!"
 
