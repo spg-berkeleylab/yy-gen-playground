@@ -1,0 +1,115 @@
+# -*- ThePEG-repository -*-
+
+##################################################
+## Collider type
+##################################################
+
+read snippets/PPCollider.in
+
+##################################################
+## Process selection
+##################################################
+
+# loading "LesHouches.so" library 
+library LesHouches.so
+
+# inserting the lhe file
+cd /Herwig/EventHandlers
+create ThePEG::LesHouchesFileReader myReader
+set myReader:FileName LHC-dijet.lhe.gz
+create ThePEG::Cuts /Herwig/Cuts/NoCuts 
+set myReader:Cuts /Herwig/Cuts/NoCuts
+set myReader:CacheFileName cache.tmp
+set myReader:MaxScan 5
+
+create ThePEG::LesHouchesEventHandler myLesHouchesHandler
+set myLesHouchesHandler:CascadeHandler /Herwig/Shower/ShowerHandler
+set myLesHouchesHandler:HadronizationHandler /Herwig/Hadronization/ClusterHadHandler
+set myLesHouchesHandler:DecayHandler /Herwig/Decays/DecayHandler
+
+insert myLesHouchesHandler:LesHouchesReaders 0 myReader
+set myLesHouchesHandler:PartonExtractor /Herwig/Partons/PPExtractor
+set myLesHouchesHandler:WeightOption VarNegWeight
+set myReader:WeightWarnings false
+
+##################################################
+# PDFs
+##################################################
+
+set myReader:InitPDFs 0
+set myReader:MomentumTreatment RescaleEnergy # momentum conservation
+
+cd /Herwig/Partons
+create ThePEG::LHAPDF myPDFset ThePEGLHAPDF.so
+set myPDFset:PDFName MMHT2014lo68cl
+set myPDFset:RemnantHandler HadronRemnants
+set /Herwig/EventHandlers/myReader:PDFA myPDFset
+set /Herwig/EventHandlers/myReader:PDFB myPDFset
+
+##################################################
+# Technical parameters for this run
+##################################################
+
+cd /Herwig/Generators
+set EventGenerator:NumberOfEvents 1000000
+set EventGenerator:RandomNumberGenerator:Seed 31122001
+# set EventGenerator:PrintEvent 10000
+set EventGenerator:MaxErrors 10000
+
+##################################################
+# physics parameters
+##################################################
+
+cd /Herwig/Generators
+set EventGenerator:EventHandler:LuminosityFunction:Energy 7000.*GeV
+# set EventGenerator:EventHandler:CascadeHandler:MPIHandler NULL
+set /Herwig/Shower/ShowerHandler:HardEmission 0
+# set /Herwig/Shower/PartnerFinder:QEDPartner IIandFF
+
+##################################################
+## Scale choice
+## See the documentation for more options
+##################################################
+
+cd /Herwig/MatrixElements/Matchbox
+set Factory:ScaleChoice Scales/SHatScale
+
+##################################################
+## Matching and shower selection
+##################################################
+
+read Matchbox/MCatLO-DefaultShower.in
+# read Matchbox/MCatNLO-DefaultShower.in
+
+##################################################
+## Handlers
+##################################################
+
+cd /Herwig/Generators
+set EventGenerator:EventHandler /Herwig/EventHandlers/myLesHouchesHandler
+# set EventGenerator:EventHandler:CascadeHandler NULL
+# set EventGenerator:EventHandler:HadronizationHandler NULL
+# set EventGenerator:EventHandler:DecayHandler NULL
+# set /Herwig/Analysis/Basics:CheckQuark 0
+set /Herwig/Shower/ShowerHandler:Interactions QCDandQED #options: QCD, QED and QCDandQED
+# set /Herwig/Particles/W-:Stable Stable
+# set /Herwig/Particles/W+:Stable Stable
+# set /Herwig/Particles/Z0:Stable Stable
+set EventGenerator:EventHandler:StatLevel Full
+
+##################################################
+## Analyses
+##################################################
+
+cd /Herwig/Analysis
+insert Rivet:Analyses 0 ATLAS_2012_I1082936
+insert /Herwig/Generators/EventGenerator:AnalysisHandlers 0 Rivet
+
+##################################################
+## Save the generator
+##################################################
+
+do /Herwig/MatrixElements/Matchbox/Factory:ProductionMode
+
+cd /Herwig/Generators
+saverun LHC-LesHouches EventGenerator

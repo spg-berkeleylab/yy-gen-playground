@@ -1,0 +1,115 @@
+##################################################
+## Process selection
+##################################################
+
+## Model assumptions
+read Matchbox/StandardModelLike.in
+
+## Set the hard process
+set /Herwig/MatrixElements/Matchbox/Factory:OrderInAlphaS 0
+set /Herwig/MatrixElements/Matchbox/Factory:OrderInAlphaEW 2
+do /Herwig/MatrixElements/Matchbox/Factory:Process gamma gamma -> e+ e-  
+
+##################################################
+## Matrix element library selection
+##################################################
+
+read Matchbox/MadGraph-MadGraph.in
+
+################################################## 
+## Cut selection 
+## See the documentation for more options 
+################################################## 
+
+set /Herwig/Cuts/ChargedLeptonPairMassCut:MinMass 15*GeV 
+set /Herwig/Cuts/ChargedLeptonCut:PtMin 20*GeV
+
+
+##################################################
+## Scale choice
+## See the documentation for more options
+##################################################
+
+cd  /Herwig/MatrixElements/Matchbox/
+set Factory:ScaleChoice Scales/LeptonPairMassScale
+
+##################################################
+## Matching and shower selection
+## Please also see flavour scheme settings
+## towards the end of the input file.
+##################################################
+
+read Matchbox/LO-DefaultShower.in
+
+##################################################
+## PDF selection
+##################################################
+
+cd /Herwig/Partons
+create ThePEG::LHAPDF myPDFset ThePEGLHAPDF.so
+set myPDFset:RemnantHandler HadronRemnants
+set myPDFset:PDFName NNPDF30_nlo_as_0118
+cd /Herwig/Couplings
+set LOAlphaS:input_scale 91.199997*GeV
+set LOAlphaS:input_alpha_s 0.118
+set LOAlphaS:max_active_flavours 5
+
+cd /Herwig/Partons
+set /Herwig/Particles/p+:PDF myPDFset
+set /Herwig/Particles/pbar-:PDF myPDFset
+
+set /Herwig/Partons/PPExtractor:FirstPDF myPDFset
+set /Herwig/Partons/PPExtractor:SecondPDF myPDFset
+
+#set /Herwig/Shower/LtoLGammaSudakov:pTmin 0.000001
+#set /Herwig/Shower/QtoGammaQSudakov:Alpha /Herwig/Shower/AlphaQED
+
+cd /Herwig/Particles
+set t:NominalMass 172.5*GeV
+set t:HardProcessMass 172.5*GeV
+set t:Width 1.3167*GeV
+
+set W+:NominalMass 80.399*GeV
+set W+:HardProcessMass 80.399*GeV
+set W+:Width 2.09974*GeV
+
+set Z0:NominalMass 91.1876*GeV
+set Z0:HardProcessMass 91.1876*GeV
+set Z0:Width 2.50966*GeV
+
+cd /Herwig/Analysis
+set Basics:CheckQuark No
+
+##################################################
+## PDF choice
+##################################################
+
+read Matchbox/FiveFlavourScheme.in
+
+# first proton
+create ThePEG::LHAPDF /Herwig/Partons/LHAPDF ThePEGLHAPDF.so
+set /Herwig/Partons/LHAPDF:PDFName NNPDF31_nlo_as_0118_luxqed
+set /Herwig/Partons/LHAPDF:RemnantHandler /Herwig/Partons/HadronRemnants
+
+# photon from second proton
+#set /Herwig/Partons/PPExtractor:FirstPDF /Herwig/Partons/BudnevPDF
+#set /Herwig/Partons/PPExtractor:SecondPDF /Herwig/Partons/LHAPDF
+set /Herwig/Partons/PPExtractor:FirstPDF /Herwig/Partons/LHAPDF
+set /Herwig/Partons/PPExtractor:SecondPDF /Herwig/Partons/BudnevPDF
+
+set /Herwig/Shower/ShowerHandler:PDFB NULL
+set /Herwig/DipoleShower/DipoleShowerHandler:PDFB NULL
+
+set /Herwig/Samplers/Sampler:Verbose Yes
+
+set /Herwig/Shower/ShowerHandler:MPIHandler NULL
+set /Herwig/Analysis/Basics:CheckQuark No
+
+set /Herwig/Generators/EventGenerator:NumberOfEvents 1500000
+set /Herwig/Generators/EventGenerator:MaxErrors 500090
+
+
+
+
+
+
