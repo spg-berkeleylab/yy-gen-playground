@@ -35,6 +35,17 @@ docker pull herwigcollaboration/herwig-7.3:7.3.0
 ```
 and follow the instructions on the dedicated [Herwig Tutorial](https://phab.hepforge.org/w/herwigtutorial/) and the additional instructions specific for this workshop [here](https://phab.hepforge.org/w/herwigtutorial/photoninduced/) (credit to: Aidin Masouminia).
 
+To have a shell, you can also do:
+```bash
+docker run -it -u `id -u $USER`:`id -g` --rm -v ${PWD}/yy-gen-playground:/work/yy-gen-playground -v ${PWD}/run:/work/run -- herwigcollaboration/herwig-7.3:7.3.0 /bin/bash
+```
+and then execute, e.g.
+```bash
+source activate
+cd /work
+```
+but we advise to follow the instructions in the tutorial links above instead.
+
 ## Generating Samples: full chain examples
 In this section we give some guidelines/examples on how to generate and analyze samples within the container.
 Note: it's ok and sometimes needed to generate some sample in one container, save the output in the `run` folder and then open it again in another container.
