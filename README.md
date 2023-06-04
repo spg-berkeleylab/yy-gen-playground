@@ -5,6 +5,8 @@ The docker image is available as `spagan/yy-gen-playground` on dockerhub (see in
 
 Pre-requisites: git, [docker](https://docs.docker.com/get-docker/)
 
+See also the section below ([Docker Installation](#docker-installation)) on installing the docker software for a few useful hints.
+
 This container was developed in the context of the [Workshop on the modeling of photon-induced processes](https://conference.ippp.dur.ac.uk/event/1193/)
 
 ## Getting started
@@ -17,7 +19,7 @@ mkdir run
 
 To create a new container based on this image you can simply run:
 ```bash
-docker run -it -v ${PWD}/yy-gen-playground:/work/yy-gen-playground -v ${PWD}/run:/work/run -- spagan/yy-gen-playground:0.6 /bin/bash
+docker run -it -u `id -u $USER`:`id -g` -v ${PWD}/yy-gen-playground:/work/yy-gen-playground -v ${PWD}/run:/work/run -- spagan/yy-gen-playground:0.6 /bin/bash
 ```
 
 Once the container has started, you need to set up the specific version of versioned-software. Edit `${HOME}/yy-gen-playground/scripts/install-versioned-sw.sh` if you need to adjust the version of the software you'd like to have available. Then execute the script
@@ -157,7 +159,7 @@ A set of utility scripts and program is available in this repository to facilita
 ## Attaching to a previously-created container
 You can see the list of containers you've created with:
 ```bash
-docler ps -a
+docker ps -a
 ```
 
 to start a container that has exited you can use
@@ -178,3 +180,30 @@ docker build -t yy-gen-playground .
 ## Available pre-generated samples
 A few samples have been already generated (either unshowered or showered) for easing comparisons.
 HepMC files and yoda files from the Rivet routine can be found on this cernbox folder (each folder can be viewed and downloaded by anyone): [https://cernbox.cern.ch/s/ue21j3KK5eQq27i](https://cernbox.cern.ch/s/ue21j3KK5eQq27i)
+
+## Docker installation
+I prefer installing aplain docker engine instead of the full-suite of docker desktop, but this is up to you.
+
+Make sure in any case to add your user to the `docker` group, e.g. in a linux system: 
+```bash
+sudo groupadd docker #in case this group does not exist yet
+sudo usermod -aG docker $USER
+```
+
+Then we need to make sure to map the user id in the container to your current user id correctly.
+You can find your user id in a terminal by doing:
+```bash
+$ id -u
+1000
+$ id -g
+1000
+```
+In this case (and most cases for single-user laptops) my user ID is `1000` and my group ID is `1000`.
+You will then need to edit (with root privilegies) the files `/etc/subid` and `/etc/subgid` to be as they appear below, but replacing `spagan` with your username on your computer.
+```bash
+$ cat /etc/subuid
+spagan:100000:65536
+$ cat /etc/subgid
+spagan:100000:65536
+```
+see also [here](https://docs.docker.com/engine/security/userns-remap/) for more information on this topic.
