@@ -206,4 +206,7 @@ spagan:100000:65536
 $ cat /etc/subgid
 spagan:100000:65536
 ```
+and then you need to enable user re-mapping in docker.
 see also [here](https://docs.docker.com/engine/security/userns-remap/) for more information on this topic.
+
+Other methods are possible especially given that the `Dockerfile` is available in the resporitory and are described in the docker documentation [here](https://faun.pub/set-current-host-user-for-docker-container-4e521cef9ffc).
