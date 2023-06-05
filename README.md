@@ -177,6 +177,8 @@ If you need to modify the container, edit the `Dockerfile` and rebuild the conta
 docker build -t yy-gen-playground .
 ```
 
+The file `Dockerfile-root` is made to build the image with only `root` user available.
+
 ## Available pre-generated samples
 A few samples have been already generated (either unshowered or showered) for easing comparisons.
 HepMC files and yoda files from the Rivet routine can be found on this cernbox folder (each folder can be viewed and downloaded by anyone): [https://cernbox.cern.ch/s/ue21j3KK5eQq27i](https://cernbox.cern.ch/s/ue21j3KK5eQq27i)
