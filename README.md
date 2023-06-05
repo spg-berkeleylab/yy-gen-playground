@@ -190,6 +190,21 @@ sudo groupadd docker #in case this group does not exist yet
 sudo usermod -aG docker $USER
 ```
 
+### Troubleshootings
+See also slides [here](https://docs.google.com/presentation/d/1SOlk3JS_UsUXbVb3GXviu_eCliy7r_afsvWin740KqI/edit?usp=sharing).
+
+#### Permission issues - solution 1
+Symptoms: files created within the container are visible outside the container but are not readable outside the container since they are from a different user (id).
+
+Work-around:
+* I’ve produced a new version of the container, called: `spagan/yy-gen-playground:0.6-root`
+* This will give-up having a dedicated user inside the container and when you start the container you’ll be the root user.
+* Every file created from inside the container will have root as user also outside the container. 
+* When outside the container, manually change file permissions to match your user with:
+`sudo chown -R yourusername:yourgroup folder`
+replacing `yourusername` and `yourgroup` to the user name and group used in your system outside the container. 
+
+#### Permission issues - solution 2
 Then we need to make sure to map the user id in the container to your current user id correctly.
 You can find your user id in a terminal by doing:
 ```bash
