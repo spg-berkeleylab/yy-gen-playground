@@ -116,9 +116,7 @@ RUN apt -y install sudo && \
 
 # set user stuff
 RUN mkdir /home/yyfriend
-RUN echo 'alias ll="ls -ltrhF --color=auto"' >> /home/yyfriend/.bashrc
-RUN echo "export PATH=/usr/local/src/hepmc2dot/:${PATH}" >> /home/yyfriend/.bashrc
-RUN chown -R yyfriend:yyfriend /home/yyfriend
+RUN echo 'alias ll="ls -ltrhF --color=auto"' >> /root/.bashrc
+RUN echo "export PATH=/usr/local/src/hepmc2dot/:${PATH}" >> /root/.bashrc
 
-# Switch to ubuntu user
-USER yyfriend
+# Run as ROOT user
