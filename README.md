@@ -13,7 +13,7 @@ This container was developed in the context of the [Workshop on the modeling of 
 Clone this repository locally, download the docker image and create a `run` folder to easily share the work across containers:
 ```
 git clone https://github.com/spg-berkeleylab/yy-gen-playground.git
-docker pull spagan/yy-gen-playground
+docker pull spagan/yy-gen-playground:0.6
 mkdir run
 ```
 
