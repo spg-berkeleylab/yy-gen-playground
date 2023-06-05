@@ -109,16 +109,9 @@ RUN mkdir -pv /pdfin && cd /pdfin && \
  rm -rf /pdfin
 
 # sudo, set user password as well for sudo
-RUN apt -y install sudo && \
- useradd -Ms /bin/bash yyfriend && \
- usermod -aG sudo yyfriend && \
- chown -R yyfriend:yyfriend /work && \
- chown -R yyfriend:yyfriend /usr/local/src/ && \
- chown -R yyfriend:yyfriend /usr/local/share/ && \
- echo "yyfriend:yygen" | chpasswd
+RUN apt -y install sudo
 
 # set user stuff
-RUN mkdir /home/yyfriend
 RUN echo 'alias ll="ls -ltrhF --color=auto"' >> /root/.bashrc
 RUN echo "export PATH=/usr/local/src/hepmc2dot/:${PATH}" >> /root/.bashrc
 
