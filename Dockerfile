@@ -41,6 +41,9 @@ RUN cd /usr/local/src/pythia && \
  wget https://pythia.org/download/pythia83/pythia8307.tgz && tar xzf pythia8307.tgz && \
  cd pythia8307 && ./configure --prefix=/usr/local --with-hepmc3 --with-lhapdf6 && make -j4
 RUN cd /usr/local/src/pythia && \
+ wget https://pythia.org/download/pythia83/pythia8306.tgz && tar xzf pythia8306.tgz && \
+ cd pythia8306 && ./configure --prefix=/usr/local --with-hepmc3 --with-lhapdf6 && make -j4
+RUN cd /usr/local/src/pythia && \
  wget https://pythia.org/download/pythia82/pythia8245.tgz && tar xzf pythia8245.tgz && \
  cd pythia8245 && ./configure --prefix=/usr/local --with-hepmc3 --with-lhapdf6 && make -j4
 RUN cd /usr/local/src/pythia && \
