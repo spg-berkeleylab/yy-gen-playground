@@ -193,7 +193,7 @@ sudo usermod -aG docker $USER
 ### Troubleshootings
 See also slides [here](https://docs.google.com/presentation/d/1SOlk3JS_UsUXbVb3GXviu_eCliy7r_afsvWin740KqI/edit?usp=sharing).
 
-#### Permission issues - solution 1
+#### Permission issues - solution 1 (mostly on Mac laptops)
 Symptoms: files created within the container are visible outside the container but are not readable outside the container since they are from a different user (id).
 
 Work-around:
@@ -208,23 +208,9 @@ If you still find that files created from inside the container are not visible o
 replacing `yourusername` and `yourgroup` to the user name and group used in your system outside the container. 
 
 #### Permission issues - solution 2
-Then we need to make sure to map the user id in the container to your current user id correctly.
-You can find your user id in a terminal by doing:
+In some system configurations you will simply need to run docker without the `-u` option and its arguments, i.e.:
 ```bash
-$ id -u
-1000
-$ id -g
-1000
+docker run -it -v ${PWD}/yy-gen-playground:/work/yy-gen-playground -v ${PWD}/run:/work/run -- spagan/yy-gen-playground:0.6 /bin/bash
 ```
-In this case (and most cases for single-user laptops) my user ID is `1000` and my group ID is `1000`.
-You will then need to edit (with root privilegies) the files `/etc/subid` and `/etc/subgid` to be as they appear below, but replacing `spagan` with your username on your computer.
-```bash
-$ cat /etc/subuid
-spagan:100000:65536
-$ cat /etc/subgid
-spagan:100000:65536
-```
-and then you need to enable user re-mapping in docker.
-see also [here](https://docs.docker.com/engine/security/userns-remap/) for more information on this topic.
 
-Other methods are possible especially given that the `Dockerfile` is available in the resporitory and are described in the docker documentation [here](https://faun.pub/set-current-host-user-for-docker-container-4e521cef9ffc).
+This is especially the case when you encounter errors complaining that `yyfriend` is not in the sudoers group.
