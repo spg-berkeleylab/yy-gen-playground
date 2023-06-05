@@ -197,10 +197,13 @@ sudo usermod -aG docker $USER
 Symptoms: files created within the container are visible outside the container but are not readable outside the container since they are from a different user (id).
 
 Work-around:
-* I’ve produced a new version of the container, called: `spagan/yy-gen-playground:0.6-root`
-* This will give-up having a dedicated user inside the container and when you start the container you’ll be the root user.
-* Every file created from inside the container will have root as user also outside the container. 
-* When outside the container, manually change file permissions to match your user with:
+* use a new version of the container, called: `spagan/yy-gen-playground:0.6-root`
+* run the docker container without the `-u` option and its arguments, i.e. just as 
+```bash
+docker run -it -v ${PWD}/yy-gen-playground:/work/yy-gen-playground -v ${PWD}/run:/work/run -- spagan/yy-gen-playground:0.6-root /bin/bash
+```
+This should solve all your problems.
+If you still find that files created from inside the container are not visible outside, when outside the container, manually change file permissions to match your user with:
 `sudo chown -R yourusername:yourgroup folder`
 replacing `yourusername` and `yourgroup` to the user name and group used in your system outside the container. 
 
