@@ -40,9 +40,10 @@ echo "Moving SuperChic outputs and configuration to ${OUT_DIR}"
 mv ${SC_CONFIG} ${OUT_DIR}/
 mv outputs ${OUT_DIR}/
 mv inputs ${OUT_DIR}/
-mv evrecs ${OUT_DIR}/
 mv evrecs/evrecout.dat evrecs/${RUN_PREFIX}.lhe
+mv evrecs ${OUT_DIR}/
 cd ${OUT_DIR}
+
 
 # Now apply patch to SC event record
 #echo "Patching SuperChic event record"
