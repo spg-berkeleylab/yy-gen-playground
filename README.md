@@ -103,7 +103,15 @@ To create plots execute:
 ```bash
 rivet-mkhtml Rivet.yoda:filename
 ```
-Now, plots in png and pdf formats are created, you can also see all of them by opening `RivetAnalysis_yy/index.html`.
+Now, plots in png and pdf formats are created, you can also see all of them by opening `RivetAnalysis_yy/index.html`. When creating the plots, if one wants to adjust the range, rebin or label the axis, one can use the configuration file `.plot`:
+```bash
+rivet-mkhtml -c RivetAnalysis_yy.plot Rivet.yoda:filename
+```
+
+To combine files for different mass slices, one can use `river-merge`:
+```bash
+rivet-merge -o output_LPAIR_mumu_total.yoda.gz MyOutputPlots_Lpair_BSY_SDiss_ggTOmumu_60M200_RivetAnalysis_yy.cc.yoda.gz:0.582 MyOutputPlots_Lpair_BSY_SDiss_ggTOmumu_200M_RivetAnalysis_yy.cc.yoda.gz:0.026284
+```
 
 
 ## Available Software
