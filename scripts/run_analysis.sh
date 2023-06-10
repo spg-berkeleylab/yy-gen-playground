@@ -10,6 +10,8 @@ cp ${YYGEN_DIR}/source/RivetAnalysis_yy.plot $OUT_DIR/
 rivet-build RivetAnalysis_yy.so RivetAnalysis_yy.cc
 echo "hepmc file used is $1"
 name=$1
-rivet -a RivetAnalysis_yy  ${name}
-rivet-mkhtml Rivet.yoda:${name/.hepmc/}
-
+shift
+echo "comparing against $@"
+yoda=${name/.hepmc/.yoda}
+rivet -a RivetAnalysis_yy -o $yoda ${name}
+rivet-mkhtml ${yoda}:${name/.hepmc/}

@@ -87,11 +87,13 @@ A quick guide to available configurations in the `config/` folder:
 
 ### Analysis
 
-A simple rivet analysis script is available in the `source` directory. The analysis `RivetAnalysis_yy.cc` contains basic plots and selction for $\gamma\gamma\to ll$ process. To run only the rivet analysis one can use `run_analysis.sh` script in the `scripts` directory, providing the hepmc file as an argument:
+A simple rivet analysis script is available in the `source` directory as example. The analysis `RivetAnalysis_yy.cc` contains basic plots and selction for $\gamma\gamma\to ll$ process. To run only the rivet analysis one can use `run_analysis.sh` script in the `scripts` directory, providing the hepmc file as an argument:
 ```bash
-sh scripts/run_analysis.sh filename.hepmc
+sh scripts/run_analysis.sh filename.hepmc [comparison1.yoda [comparison2.yoda ...]]
 ```
-After any change is made in the analysis script `RivetAnalysis_yy.cc` you need to compile it:
+The script will make a copy of the analysis in the current folder for bookkeeping as well. Optional arguments are already-existing yoda files to compare to.
+
+To run the analysis without the script, after any change is made in the analysis script `RivetAnalysis_yy.cc` you need to compile it:
 ```bash
 rivet-build RivetAnalysis_yy.so RivetAnalysis_yy.cc
 ```
