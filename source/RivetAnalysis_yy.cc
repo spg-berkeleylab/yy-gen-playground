@@ -75,16 +75,32 @@ namespace Rivet {
 
       // Book histograms
       // Histograms Leptons
-      book(_histLeptonPt1, "LeptonPt1", 100, 0, 100);
-      book(_histLeptonPt2, "LeptonPt2", 100, 0, 100);
-      book(_histLeptonEta1, "LeptonEta1", 54, -2.7, 2.7);
-      book(_histLeptonEta2, "LeptonEta2", 54, -2.7, 2.7);
+      book(_histLeptonPt1[0], "LeptonPt1_incl", 100, 0, 100);
+      book(_histLeptonPt2[0], "LeptonPt2_incl", 100, 0, 100);
+      book(_histLeptonEta1[0], "LeptonEta1_incl", 54, -2.7, 2.7);
+      book(_histLeptonEta2[0], "LeptonEta2_incl", 54, -2.7, 2.7);
+      book(_histLeptonPt1[1], "LeptonPt1_Nch0", 100, 0, 100);
+      book(_histLeptonPt2[1], "LeptonPt2_Nch0", 100, 0, 100);
+      book(_histLeptonEta1[1], "LeptonEta1_Nch0", 54, -2.7, 2.7);
+      book(_histLeptonEta2[1], "LeptonEta2_Nch0", 54, -2.7, 2.7);
+      book(_histLeptonPt1[2], "LeptonPt1_Nch1", 100, 0, 100);
+      book(_histLeptonPt2[2], "LeptonPt2_Nch1", 100, 0, 100);
+      book(_histLeptonEta1[2], "LeptonEta1_Nch1", 54, -2.7, 2.7);
+      book(_histLeptonEta2[2], "LeptonEta2_Nch1", 54, -2.7, 2.7);
 
       // Histograms di-lepton system
-      book(_histMll, "mll", 500, 0, 500);
-      book(_histPtll, "ptll", 500, 0, 500);
-      book(_histDphill, "Dphill", 64, 0.0, 3.2);
-      book(_histAcoll, "LogAco", 20, -10, 0.0);
+      book(_histMll[0], "mll_incl", 500, 0, 500);
+      book(_histPtll[0], "ptll_incl", 500, 0, 500);
+      book(_histDphill[0], "Dphill_incl", 64, 0.0, 3.2);
+      book(_histAcoll[0], "LogAco_incl", 20, -10, 0.0);
+      book(_histMll[1], "mll_Nch0", 500, 0, 500);
+      book(_histPtll[1], "ptll_Nch0", 500, 0, 500);
+      book(_histDphill[1], "Dphill_Nch0", 64, 0.0, 3.2);
+      book(_histAcoll[1], "LogAco_Nch0", 20, -10, 0.0);
+      book(_histMll[2], "mll_Nch1", 500, 0, 500);
+      book(_histPtll[2], "ptll_Nch1", 500, 0, 500);
+      book(_histDphill[2], "Dphill_Nch1", 64, 0.0, 3.2);
+      book(_histAcoll[2], "LogAco_Nch1", 20, -10, 0.0);
 
       // specify custom binning
       book(_histMult   , "Mult", 100, -0.5, 99.5);
@@ -154,15 +170,15 @@ namespace Rivet {
       if (mll <= 10) vetoEvent;
 
       // Fill histograms
-      _histLeptonPt1 -> fill(Ptl1);
-      _histLeptonPt2 -> fill(Ptl2);
-      _histLeptonEta1 -> fill(Etal1);
-      _histLeptonEta2 -> fill(Etal2);
+      _histLeptonPt1[0] -> fill(Ptl1);
+      _histLeptonPt2[0] -> fill(Ptl2);
+      _histLeptonEta1[0] -> fill(Etal1);
+      _histLeptonEta2[0] -> fill(Etal2);
 
-      _histMll ->fill(mll);
-      _histPtll -> fill(pTll);
-      _histDphill -> fill(dphill);
-      _histAcoll -> fill(log(aco));
+      _histMll[0] ->fill(mll);
+      _histPtll[0] -> fill(pTll);
+      _histDphill[0] -> fill(dphill);
+      _histAcoll[0] -> fill(log(aco));
 
       _histMult->fill(cfs_nolep.size());
       for (const Particle& p : cfs_nolep.particles()) {
@@ -174,38 +190,28 @@ namespace Rivet {
 
       //events with zero charged particles
       if (cfs_nolep.size()==0){
-	_histMllnch0 ->fill(mll);
-	_histPtllnch0 -> fill(pTll);
-	_histDphillnch0 -> fill(dphill);
-	_histAcollnch0 -> fill(aco);
-	
-	_histLeptonPt1nch0 -> fill(Ptl1);
-	_histLeptonPt2nch0 -> fill(Ptl2);
-	_histLeptonEta1nch0 -> fill(Etal1);
-	_histLeptonEta2nch0 -> fill(Etal2);
-	
-	for (const Particle& p : cfs_nolep.particles()) {
-	  _histEtaChNLnch0->fill(p.eta());
-	  _histPtChNLnch0->fill(p.pT()/GeV);
-	}
+	_histLeptonPt1[1] -> fill(Ptl1);
+	_histLeptonPt2[1] -> fill(Ptl2);
+	_histLeptonEta1[1] -> fill(Etal1);
+	_histLeptonEta2[1] -> fill(Etal2);
+
+	_histMll[1] ->fill(mll);
+	_histPtll[1] -> fill(pTll);
+	_histDphill[1] -> fill(dphill);
+	_histAcoll[1] -> fill(log(aco));
       }
 
       //events with one or more charged particles
       if (cfs_nolep.size()>0){
-	_histMllnch1 ->fill(mll);
-	_histPtllnch1 -> fill(pTll);
-	_histDphillnch1 -> fill(dphill);
-	_histAcollnch1 -> fill(aco);
-	
-	_histLeptonPt1nch1 -> fill(Ptl1);
-	_histLeptonPt2nch1 -> fill(Ptl2);
-	_histLeptonEta1nch1 -> fill(Etal1);
-	_histLeptonEta2nch1 -> fill(Etal2);
-	
-	for (const Particle& p : cfs_nolep.particles()) {
-	  _histEtaChNLnch1->fill(p.eta());
-	  _histPtChNLnch1->fill(p.pT()/GeV);
-	}
+	_histLeptonPt1[1] -> fill(Ptl1);
+	_histLeptonPt2[1] -> fill(Ptl2);
+	_histLeptonEta1[1] -> fill(Etal1);
+	_histLeptonEta2[1] -> fill(Etal2);
+
+	_histMll[1] ->fill(mll);
+	_histPtll[1] -> fill(pTll);
+	_histDphill[1] -> fill(dphill);
+	_histAcoll[1] -> fill(log(aco));
       }
     }
 
@@ -215,15 +221,35 @@ namespace Rivet {
 
       double normfac = crossSection()/sumOfWeights();
 
-      scale(_histLeptonPt1, normfac);
-      scale(_histLeptonPt2, normfac);
-      scale(_histLeptonEta1, normfac);
-      scale(_histLeptonEta2, normfac);
+      scale(_histLeptonPt1[0], normfac);
+      scale(_histLeptonPt2[0], normfac);
+      scale(_histLeptonEta1[0], normfac);
+      scale(_histLeptonEta2[0], normfac);
 
-      scale(_histMll, normfac);
-      scale(_histPtll, normfac);
-      scale(_histDphill, normfac);
-      scale(_histAcoll, normfac);
+      scale(_histMll[0], normfac);
+      scale(_histPtll[0], normfac);
+      scale(_histDphill[0], normfac);
+      scale(_histAcoll[0], normfac);
+
+      scale(_histLeptonPt1[1], normfac);
+      scale(_histLeptonPt2[1], normfac);
+      scale(_histLeptonEta1[1], normfac);
+      scale(_histLeptonEta2[1], normfac);
+
+      scale(_histMll[1], normfac);
+      scale(_histPtll[1], normfac);
+      scale(_histDphill[1], normfac);
+      scale(_histAcoll[1], normfac);
+
+      scale(_histLeptonPt1[2], normfac);
+      scale(_histLeptonPt2[2], normfac);
+      scale(_histLeptonEta1[2], normfac);
+      scale(_histLeptonEta2[2], normfac);
+
+      scale(_histMll[2], normfac);
+      scale(_histPtll[2], normfac);
+      scale(_histDphill[2], normfac);
+      scale(_histAcoll[2], normfac);
 
       normalize(_histMult, normfac); 
 
@@ -239,8 +265,8 @@ namespace Rivet {
     /// @name Histograms
     /// @{
 
-    Histo1DPtr _histMll, _histPtll, _histDphill, _histAcoll;
-    Histo1DPtr _histLeptonPt1, _histLeptonPt2, _histLeptonEta1, _histLeptonEta2;
+    Histo1DPtr _histMll[3], _histPtll[3], _histDphill[3], _histAcoll[3];
+    Histo1DPtr _histLeptonPt1[3], _histLeptonPt2[3], _histLeptonEta1[3], _histLeptonEta2[3];
 
     Histo1DPtr _histMult, _histEta, _histRapidity, _histPt, _histE, _histPhi;
     Histo1DPtr _histEtaCh, _histRapidityCh, _histPtCh, _histECh, _histPhiCh;
