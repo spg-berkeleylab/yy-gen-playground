@@ -31,7 +31,7 @@
 #                3=photon from electron, 4=photon from muon          *
 #*********************************************************************
   2	= lpp1 ! beam 1 type
-  2	= lpp2 ! beam 2 type
+  1 = lpp2 ! beam 2 type
   6500.0	= ebeam1 ! beam 1 total energy in GeV
   6500.0	= ebeam2 ! beam 2 total energy in GeV
 # To see polarised beam options: type "update beam_pol"
@@ -109,7 +109,7 @@
 #*********************************************************************
 # Minimum and maximum DeltaR distance                                *
 #*********************************************************************
-  0.4	= drll ! min distance between leptons
+  0.2	= drll ! min distance between leptons
   -1.0	= drllmax ! max distance between leptons
 #*********************************************************************
 # Minimum and maximum invariant mass for pairs                       *
@@ -159,6 +159,6 @@
 # Syscalc is deprecated but to see the associate options type'update syscalc'
   False	= fixed_fac_scale2 
   False	= fixed_fac_scale1 
-  False	= cut_decays 
+  True	= cut_decays 
   3.0	= lhe_version 
   1234	= python_seed 
