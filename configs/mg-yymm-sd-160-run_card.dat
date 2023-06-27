@@ -114,7 +114,7 @@
 #*********************************************************************
 # Minimum and maximum invariant mass for pairs                       *
 #*********************************************************************
-  200.0	= mmll ! min invariant mass of l+l- (same flavour) lepton pair
+  160.0	= mmll ! min invariant mass of l+l- (same flavour) lepton pair
   -1.0	= mmllmax ! max invariant mass of l+l- (same flavour) lepton pair
   {}	= mxx_min_pdg ! min invariant mass of a pair of particles X/X~ (e.g. {6:250})
   {'default': False}	= mxx_only_part_antipart ! if True the invariant mass is applied only
