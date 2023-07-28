@@ -126,7 +126,7 @@ The *versioned software* is pre-compiled and available in the `/usr/local/src/` 
 | Type | Name | Versions | Location  |
 |------|------|----------|-----------|
 | Generator | SuperChic | 4.12(*), 4.2 | `${SUPERCHIC_DIR}`|
-| Generator | Madgraph  | 2.9.5(*), 3.5.0 | `${MADGRAPH_DIR}` |
+| Generator | Madgraph  | 2.9.5(*), 3.5.1 | `${MADGRAPH_DIR}` |
 | Parton Shower | Pythia8 | 8.245(*), 8.306, 8.307, 8.309 | `${PYTHIA_DIR}` |
 | Parton Shower | Herwig  | 7.3.0 | `herwigcollaboration/herwig-7.3:7.3.0` image |
 | Generator     | CepGen  | 1.1.0(*)  | `${CEPGEN_DIR}` |
@@ -187,7 +187,11 @@ If you need to modify the container, edit the `Dockerfile` and rebuild the conta
 docker build -t yy-gen-playground .
 ```
 
-The file `Dockerfile-root` is made to build the image with only `root` user available.
+To build an image with only the `root` user available (useful in some MacOS setup, where this user is already mapped to the user starting docker), you can build the image as follows:
+```bash
+docker build --build-arg MAIN_USER=root -t yy-gen-playground .
+```
+
 
 ## Available pre-generated samples
 A few samples have been already generated (either unshowered or showered) for easing comparisons.

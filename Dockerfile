@@ -1,14 +1,20 @@
-FROM hepstore/rivet:3.1.8-hepmc3
+# Docker build settings
+######### 
+# Decide if to setup the container as a normal user ('yyfriend') or as 'root' user.
+# Possible values: 'user', 'root'
+ARG MAIN_USER=user
 
 # General software
 ######### 
+FROM hepstore/rivet:3.1.8-hepmc3 AS yygenplayground-base
+
 # Python virtual environment
 #RUN apt -y install python3-pip python3-venv && \
 # python3 -m venv /home/ubuntu/py-venv && \
 # chown -R ubuntu:ubuntu /home/ubuntu/py-venv && \
 # echo '# Setup python3 virtual environment' >> /home/ubuntu/.bashrc && \
 # echo 'source /home/ubuntu/py-env/bin/activate' >> /home/ubuntu/.bashrc
-RUN apt -y install libgsl-dev poppler-utils graphviz libglu1-mesa libzip-dev vim
+RUN apt-get update && apt -y install libgsl-dev poppler-utils graphviz libglu1-mesa libzip-dev vim
 
 # Get specific software with fixed versions
 #########
@@ -63,7 +69,7 @@ RUN mkdir -pv /usr/local/src/madgraph
 RUN cd /usr/local/src/madgraph && \
  wget https://launchpad.net/mg5amcnlo/lts/2.9.x/+download/MG5_aMC_v2.9.5.tar.gz && tar xzf MG5_aMC_v2.9.5.tar.gz
 RUN cd /usr/local/src/madgraph && \
- wget https://launchpad.net/mg5amcnlo/3.0/3.5.x/+download/MG5_aMC_v3.5.0.tar.gz && tar xzf MG5_aMC_v3.5.0.tar.gz
+ wget https://launchpad.net/mg5amcnlo/3.0/3.5.x/+download/MG5_aMC_v3.5.1.tar.gz && tar xzf MG5_aMC_v3.5.1.tar.gz
 
 # Superchic
 RUN mkdir -pv /usr/local/src/superchic
@@ -108,6 +114,9 @@ RUN mkdir -pv /pdfin && cd /pdfin && \
  tar xzf /pdfin/SF_MSHT20qed_nnlo.tar.gz && \
  rm -rf /pdfin
 
+# Now build an image supporting a user
+######### 
+FROM yygenplayground-base AS yygenplayground-user
 # sudo, set user password as well for sudo
 RUN apt -y install sudo && \
  useradd -Ms /bin/bash yyfriend && \
@@ -125,3 +134,11 @@ RUN chown -R yyfriend:yyfriend /home/yyfriend
 
 # Switch to ubuntu user
 USER yyfriend
+
+# Instead, if we want just the root user...
+######### 
+FROM yygenplayground-base AS yygenplayground-root
+
+# Finally, choose the final stage based on the build arguments
+######### 
+FROM yygenplayground-${MAIN_USER} AS yygenplayground-final
