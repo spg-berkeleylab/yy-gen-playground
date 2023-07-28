@@ -2,7 +2,7 @@
 ## Install versioned-software in the running container.
 
 # List of versions (see table in README.md file for available versions)
-PYTHIA_VERSION="8.245"
+PYTHIA_VERSION="8.310"
 HERWIG_VERSION="" # via separate container
 MADGRAPH_VERSION="2.9.5"
 SUPERCHIC_VERSION="4.12"

@@ -127,7 +127,7 @@ The *versioned software* is pre-compiled and available in the `/usr/local/src/` 
 |------|------|----------|-----------|
 | Generator | SuperChic | 4.12(*), 4.2 | `${SUPERCHIC_DIR}`|
 | Generator | Madgraph  | 2.9.5(*), 3.5.1 | `${MADGRAPH_DIR}` |
-| Parton Shower | Pythia8 | 8.245(*), 8.306, 8.307, 8.309, 8.310 | `${PYTHIA_DIR}` |
+| Parton Shower | Pythia8 | 8.245, 8.306, 8.310(*) | `${PYTHIA_DIR}` |
 | Parton Shower | Herwig  | 7.3.0 | `herwigcollaboration/herwig-7.3:7.3.0` image |
 | Generator     | CepGen  | 1.1.0(*)  | `${CEPGEN_DIR}` |
 | Generator     | Sherpa  | master(*) | `${SHERPA_DIR}` |
