@@ -55,6 +55,9 @@ RUN cd /usr/local/src/pythia && \
 RUN cd /usr/local/src/pythia && \
  wget https://pythia.org/download/pythia83/pythia8309.tgz && tar xzf pythia8309.tgz && \
  cd pythia8309 && ./configure --prefix=/usr/local --with-hepmc3 --with-lhapdf6 && make -j4
+RUN cd /usr/local/src/pythia && \
+ wget https://pythia.org/download/pythia83/pythia8310.tgz && tar xzf pythia8310.tgz && \
+ cd pythia8310 && ./configure --prefix=/usr/local --with-hepmc3 --with-lhapdf6 && make -j4
 
 # Herwig
 RUN mkdir -pv /usr/local/src/herwig
