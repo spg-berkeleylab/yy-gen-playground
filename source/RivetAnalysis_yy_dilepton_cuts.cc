@@ -39,7 +39,7 @@ namespace Rivet {
 
       // Dress the bare direct leptons with direct photons within dR < 0.1,
       // and apply some fiducial cuts on the dressed leptons
-      Cut lepton_cuts = ((Cuts::abseta < 2.5) && (Cuts::pT > 5*GeV));
+      Cut lepton_cuts = ((Cuts::abseta < 2.5) && (Cuts::pT > 20*GeV));
       DressedLeptons dressed_leps(photons, bare_leps, 0.1, lepton_cuts);
       declare(dressed_leps, "leptons");
 
@@ -151,7 +151,7 @@ namespace Rivet {
       if (mll <= 20) vetoEvent;
 
       // di-lepton pT selection
-      if (pTll <= 50) vetoEvent;
+      if (pTll <= 30) vetoEvent;
 
       // leading lepton pT selection
       if (Ptl1 <= 27) vetoEvent;
