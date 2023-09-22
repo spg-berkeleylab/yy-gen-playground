@@ -1,0 +1,152 @@
+***********************************************************************************
+****** Initialize afain if FIRST FIVE PARAMETERS ARE CHANGED (and beam = 'prot'):******
+***********************************************************************************
+13000.0d0                     ! [rts] : CMS collision energy (GeV) 
+4                         ! [isurv] : Model of soft survival (from 1 -> 4)
+'in'                     ! [intag] for input files  
+***********************************************************************************
+***********************************************************************************
+'MMHT2014lo68cl'                ! [PDFname] : PDF set 
+0                       ! [PDFmember] : PDF member 
+***********************************************************************************
+57                             ! [proc] : Process number 
+'prot'                           ! [beam] : Beam type ('prot', 'ion', 'ionp' or 'el') 
+'out'                           ! [outtg] : for output file 
+.true.                          ! [sfaci] : Include soft survival effects 
+***********************************************************************************
+***********************************************************************************
+***********************************************************************************
+'sda'                          ! [diff] : dissociation flag 
+***********************************************************************************
+208d0                                  ! [an] : Ion mass number 
+82d0                                   ! [az] : Ion atomic number 
+6.68d0                                 ! [rz] : Ion proton density - radius 
+0.447d0                                ! [dz] : Ion proton density - skin thickness 
+6.7d0                                  ! [rn] : Ion neutron density - radius 
+0.55d0                                  ! [dn] : Ion neutron density - skin thickness 
+'coh'                               ! [ionqcd] : Coherent ('coh') or incoherent ('incoh') for QCD-induced processes 
+***********************************************************************************
+*************Integration parameters************************************************
+***********************************************************************************
+10000                              ! [ncall] : Number of calls for preconditioning 
+10                                  ! [itmx] : Number of iterations for preconditioning 
+0.5d0                                 ! [prec] :  Relative accuracy (in %) in main run 
+10000                               ! [ncall1] : Number of calls in first iteration 
+10000                              ! [inccall] : Number of increase calls per iteration 
+1000                                ! [itend] : Maximum number of iterations 
+1234                                 ! [iseed] : Random number seed (integer > 0) 
+***********************************************************************************
+********************Unweighted events**********************************************
+***********************************************************************************
+.true.                              ! [genunw] : Generate unweighted events 
+20000                                 ! [nev] : Number of events (preferably controlled by maxEvents option in Gen_tf command) 
+'lhe'                               ! [erec] : Event record format ('hepmc','lhe','hepevt') 
+.false.                             ! [readwt] : Set to true to read in pre-calculated maxium weight below 
+0d0                               ! [wtmax] : Maximum weight 
+***********************************************************************************
+***********************************************************************************
+*******************   general cuts ************************************************
+-5.0d0                               ! [ymin] : Minimum object rapidity Y_X 
+5.0d0                               ! [ymax] : Maximum object rapidity Y_X 
+160d0                               ! [mmin] : Minimum object mass M_X (redundant for resonance production) 
+2000d0                               ! [mmax] : Maximum object mass M_X (redundant for resonance production) 
+.true.                             ! [gencuts] : Generate cuts below 
+.true.                             ! [scorr] : Include spin correlations (for chi_c/b decays) 
+.true.                             ! [fwidth] : Include finite width (for chi_c decays)  
+***********************************************************************************
+************ See manual for momentum assignments***********************************
+***********************************************************************************
+******************* Proton Cuts ***************************************************
+***********************************************************************************
+300d0                               ! [ptxmax] : max pT of the system  
+***********************************************************************************
+**********2 body final states : p(a) + p(b) ***************************************
+***********************************************************************************
+3.5d0                               ! [ptamin] 
+3.5d0                               ! [ptbmin] 
+-2.5d0                              ! [etaamin] 
+2.5d0                              ! [etaamax] 
+-2.5d0                              ! [etabmin] 
+2.5d0                              ! [etabmax] 
+100d0                             ! [acoabmax] 
+***********************************************************************************
+****** 3 body final states : p(a) + p(b) + p(c) ***********************************
+***********************************************************************************
+3.5d0                                ! [ptamin] 
+3.5d0                               ! [ptbmin] 
+0d0                                ! [ptcmin] 
+-2.5d0                               ! [etaamin] 
+2.5d0                               ! [etaamax] 
+-2.5d0                              ! [etabmin] 
+2.5d0                               ! [etabmax]	 
+-2.5d0                               ! [etacmin] 
+2.5d0                               ! [etacmax]	 
+***********************************************************************************
+****** 4 body final states : p(a) + p(b) + p(c) + p(d) ****************************
+***********************************************************************************
+3.5d0                                ! [ptamin] 
+3.5d0                                ! [ptbmin] 
+0d0                                ! [ptcmin] 
+0d0                                ! [ptdmin] 
+-2.5d0                               ! [etaamin] 
+2.5d0                               ! [etaamax] 
+-2.5d0                               ! [etabmin] 
+2.5d0                               ! [etabmax] 
+-2.5d0                               ! [etacmin] 
+2.5d0                               ! [etacmax] 
+-2.5d0                               ! [etacmin] 
+2.5d0                               ! [etadmax] 
+***********************************************************************************
+****** 6 body final states : p(a) + p(b) + p(c) + p(d) + p(e) + p(f) **************
+***********************************************************************************
+3.5d0                                ! [ptamin] 
+3.5d0                                ! [ptbmin] 
+0d0                                ! [ptcmin]  
+0d0                                ! [ptdmin] 
+0d0                                ! [ptemin] 
+0d0                                ! [ptfmin]  
+-2.5d0                               ! [etaamin] 
+2.5d0                               ! [etaamax] 
+-2.5d0                               ! [etabmin] 
+2.5d0                               ! [etabmax]	
+-2.5d0                               ! [etacmin] 
+2.5d0                               ! [etacmax] 
+-2.5d0                               ! [etadmin]  
+2.5d0                               ! [etadmax]  
+-2.5d0                               ! [etaemin]  
+2.5d0                               ! [etaemax] 
+-2.5d0                               ! [etafmin] 
+2.5d0                               ! [etafmax]	
+***********************************************************************************
+******************* jet algorithm parameters **************************************
+***********************************************************************************
+0.6d0                                  ! [rjet] : Jet Radius 
+'antikt'                                  ! [jalg] : Jet algorithm ('antikt','kt') 
+***********************************************************************************
+***** chi_c/b two-body decays *****************************************************
+***********************************************************************************
+0.133d0                                   ! [m2b] : mass of decay particles 
+211                                ! [pdgid1] : PDG number particle 1 
+-211                                ! [pdgid2] : PDG number particle 2 
+***********************************************************************************
+*******  ALP Parameters ***********************************************************
+***********************************************************************************
+1000d0                                  ! [malp] : ALP mass (GeV) 
+0.001d0                                   ! [gax] : ALP coupling (GeV^-1) 
+'ps'                                  ! [alpt] : AlP type (scalar - 'sc', pseudoscalar - 'ps') 
+***********************************************************************************
+**** Monopole Parameters **********************************************************
+***********************************************************************************
+500d0                                  ! [mpol] : Monopole mass 
+933d0                                  ! [mmon] : Monopolium mass 
+10d0                                  ! [gamm] : Monopolium width 
+***********************************************************************************
+****   SUSY Parameters ************************************************************
+***********************************************************************************
+100d0                                ! [mcharg] : Chargino/Slepton mass 
+80d0                                ! [mneut]  : Neutralino mass 
+***********************************************************************************
+***********************************************************************************
+***********************************************************************************
+'mu'                                  ! [wlp] : leptonic decay (either 'mu' or 'el') for Wplus 
+'mu'                                  ! [wlm] : leptonic decay (either 'mu' or 'el') for Wminus 
