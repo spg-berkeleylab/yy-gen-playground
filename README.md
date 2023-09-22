@@ -19,7 +19,7 @@ mkdir run
 
 To create a new container based on this image you can simply run:
 ```bash
-docker run -it -v ${PWD}/yy-gen-playground:/work/yy-gen-playground -v ${PWD}/run:/work/run -- spagan/yy-gen-playground:0.6 /bin/bash
+docker run -it -v ${PWD}/yy-gen-playground:/work/yy-gen-playground -v ${PWD}/run:/work/run -- spagan/yy-gen-playground:0.8 /bin/bash
 ```
 
 Once the container has started, you need to set up the specific version of versioned-software. Edit `${HOME}/yy-gen-playground/scripts/install-versioned-sw.sh` if you need to adjust the version of the software you'd like to have available. Then execute the script

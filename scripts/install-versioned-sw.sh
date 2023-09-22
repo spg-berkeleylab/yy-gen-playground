@@ -6,7 +6,7 @@ PYTHIA_VERSION="8.245"
 HERWIG_VERSION="" # via separate container
 MADGRAPH_VERSION="2.9.5"
 SUPERCHIC_VERSION="4.12"
-CEPGEN_VERSION="1.1.0"
+CEPGEN_VERSION="master"
 SHERPA_VERSION="" # latest version from master branch
 
 # Utilities and common settings
