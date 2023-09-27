@@ -203,15 +203,15 @@ namespace Rivet {
 
       //events with one or more charged particles
       if (cfs_nolep.size()>0){
-	_histLeptonPt1[1] -> fill(Ptl1);
-	_histLeptonPt2[1] -> fill(Ptl2);
-	_histLeptonEta1[1] -> fill(Etal1);
-	_histLeptonEta2[1] -> fill(Etal2);
+	_histLeptonPt1[2] -> fill(Ptl1);
+	_histLeptonPt2[2] -> fill(Ptl2);
+	_histLeptonEta1[2] -> fill(Etal1);
+	_histLeptonEta2[2] -> fill(Etal2);
 
-	_histMll[1] ->fill(mll);
-	_histPtll[1] -> fill(pTll);
-	_histDphill[1] -> fill(dphill);
-	_histAcoll[1] -> fill(log(aco));
+	_histMll[2] ->fill(mll);
+	_histPtll[2] -> fill(pTll);
+	_histDphill[2] -> fill(dphill);
+	_histAcoll[2] -> fill(log(aco));
       }
     }
 
