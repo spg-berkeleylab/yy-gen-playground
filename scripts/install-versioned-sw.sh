@@ -6,7 +6,7 @@ PYTHIA_VERSION="8.310"
 HERWIG_VERSION="" # via separate container
 MADGRAPH_VERSION="2.9.5"
 SUPERCHIC_VERSION="4.12"
-CEPGEN_VERSION="1.1.0"
+CEPGEN_VERSION="1.1.0-196-ge6e1adde"
 SHERPA_VERSION="" # latest version from master branch
 
 # Utilities and common settings
@@ -67,6 +67,7 @@ if [ "${cepgen_ver}" != ${CEPGEN_VERSION} ]; then
 fi
 cd build
 ${SUDO} make install >> ${LOGFILE} 2>&1
+export PYTHONPATH=$PYTHONPATH:$CEPGEN_DIR/python/
 
 # Sherpa
 echo "===> Installing Sherpa ${SHERPA_VERSION}" | tee -a ${LOGFILE}

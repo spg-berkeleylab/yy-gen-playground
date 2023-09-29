@@ -13,13 +13,13 @@ This container was developed in the context of the [Workshop on the modeling of 
 Clone this repository locally, download the docker image and create a `run` folder to easily share the work across containers:
 ```
 git clone https://github.com/spg-berkeleylab/yy-gen-playground.git
-docker pull spagan/yy-gen-playground:0.8
+docker pull spagan/yy-gen-playground:0.9
 mkdir run
 ```
 
 To create a new container based on this image you can simply run:
 ```bash
-docker run -it -v ${PWD}/yy-gen-playground:/work/yy-gen-playground -v ${PWD}/run:/work/run -- spagan/yy-gen-playground:0.6 /bin/bash
+docker run -it -v ${PWD}/yy-gen-playground:/work/yy-gen-playground -v ${PWD}/run:/work/run -- spagan/yy-gen-playground:0.9 /bin/bash
 ```
 
 Once the container has started, you need to set up the specific version of versioned-software. Edit `${HOME}/yy-gen-playground/scripts/install-versioned-sw.sh` if you need to adjust the version of the software you'd like to have available. Then execute the script
