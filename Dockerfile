@@ -54,10 +54,10 @@ RUN cd /usr/local/src/pythia && \
  cd pythia8310 && ./configure --prefix=/usr/local --with-hepmc3 --with-lhapdf6 && make -j4
 
 # Herwig
-RUN mkdir -pv /usr/local/src/herwig
-ENV LHAPDF_DATA_PATH="/usr/local/share/LHAPDF"
-RUN cd /usr/local/src/herwig && \
- wget https://herwig.hepforge.org/downloads/herwig-bootstrap && chmod +x herwig-bootstrap 
+#RUN mkdir -pv /usr/local/src/herwig
+#ENV LHAPDF_DATA_PATH="/usr/local/share/LHAPDF"
+#RUN cd /usr/local/src/herwig && \
+# wget https://herwig.hepforge.org/downloads/herwig-bootstrap && chmod +x herwig-bootstrap 
 # && \
 # ./herwig-bootstrap -j 4 --without-madgraph --with-hepmc=/usr/local --with-lhapdf=`lhapdf-config --prefix` --with-yoda=`yoda-config --prefix` --with-rivet=`rivet-config --prefix`  /usr/local/src/herwig/
 
@@ -81,7 +81,7 @@ RUN cd /usr/local/src/superchic && \
 RUN mkdir -pv /usr/local/src/cepgen
 RUN cd /usr/local/src/cepgen && \
  git clone https://github.com/cepgen/cepgen.git && \
- cd cepgen && git checkout 1.1.0 && \
+ cd cepgen && git checkout master && \
  CEPGEN_SOURCES=`pwd -P` && \
  mkdir $CEPGEN_SOURCES/build && cd $CEPGEN_SOURCES/build && \
  cmake $CEPGEN_SOURCES && make -j4
