@@ -34,7 +34,7 @@
 10000                               ! [ncall1] : Number of calls in first iteration 
 10000                              ! [inccall] : Number of increase calls per iteration 
 1000                                ! [itend] : Maximum number of iterations 
-1234                                 ! [iseed] : Random number seed (integer > 0) 
+12345                                 ! [iseed] : Random number seed (integer > 0) 
 ***********************************************************************************
 ********************Unweighted events**********************************************
 ***********************************************************************************
