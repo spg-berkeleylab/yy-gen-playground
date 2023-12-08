@@ -12,11 +12,11 @@ namespace Rivet {
 
 
   /// @brief Add a short analysis description here
-  class RivetAnalysis_yy_ll : public Analysis {
+  class RivetAnalysis_yy_WW : public Analysis {
   public:
 
     /// Constructor
-    RIVET_DEFAULT_ANALYSIS_CTOR(RivetAnalysis_yy_ll);
+    RIVET_DEFAULT_ANALYSIS_CTOR(RivetAnalysis_yy_WW);
 
 
     /// @name Analysis methods
@@ -145,23 +145,20 @@ namespace Rivet {
       if (leptons.size()!=2) vetoEvent;
 
       // same or opposite flavor leptons
-      if (leptons[0].abspid() != leptons[1].abspid()) vetoEvent;
+      //if (leptons[0].abspid() != leptons[1].abspid()) vetoEvent;
       //if (leptons[0].abspid() = leptons[1].abspid()) vetoEvent;
 
       // opposite charged leptons
       if (leptons[0].charge() == leptons[1].charge()) vetoEvent;
 
-      // leading lepton pT selection
-      if (Ptl1 <= 27) vetoEvent;
-
-      // fill mll histogram before cut
-      _histMll -> fill(mll);
-
       // di-lepton invariant mass selection
-      if (mll <= 160) vetoEvent;
+      if (mll <= 20) vetoEvent;
 
       // di-lepton pT selection
-      // if (pTll <= 30) vetoEvent;
+      if (pTll <= 30) vetoEvent;
+
+      // leading lepton pT selection
+      if (Ptl1 <= 27) vetoEvent;
 
       // Fill histograms
       _histLeptonPt1 -> fill(Ptl1);
@@ -169,6 +166,7 @@ namespace Rivet {
       _histLeptonEta1 -> fill(Etal1);
       _histLeptonEta2 -> fill(Etal2);
 
+      _histMll -> fill(mll);
       _histPtll -> fill(pTll);
       _histDphill -> fill(dphill);
       _histAcoll -> fill(log(aco));
@@ -249,7 +247,7 @@ namespace Rivet {
   };
 
 
-  RIVET_DECLARE_PLUGIN(RivetAnalysis_yy_ll);
+  RIVET_DECLARE_PLUGIN(RivetAnalysis_yy_WW);
 
 }
 
