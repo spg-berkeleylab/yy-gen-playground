@@ -122,10 +122,20 @@ namespace Rivet {
 
       Particles cfs_nolep_bypt = cfs_nolep.particles(cmpMomByPt); 
 
-      const FourMomentum dilepton = leptons.size()>1 ? leptons[0].momentum() + leptons[1].momentum() : FourMomentum(0,0,0,0);
+      const FourMomentum dilepton_unflipped = leptons.size()>1 ? leptons[0].momentum() + leptons[1].momentum() : FourMomentum(0,0,0,0);
 
-      const FourMomentum l1 = leptons.size()>0 ? leptons[0].momentum() : FourMomentum(0,0,0,0);
-      const FourMomentum l2 = leptons.size()>1 ? leptons[1].momentum() : FourMomentum(0,0,0,0);
+      const FourMomentum l1_unflipped = leptons.size()>0 ? leptons[0].momentum() : FourMomentum(0,0,0,0);
+      const FourMomentum l2_unflipped = leptons.size()>1 ? leptons[1].momentum() : FourMomentum(0,0,0,0);
+
+      // Flip sign of z momentum to switch from inelastic-elastic to elastic-inelastic
+      FourMomentum l1 = l1_unflipped;
+      l1.setPz(-1 * l1_unflipped[3]);
+
+      FourMomentum l2 = l2_unflipped;
+      l2.setPz(-1 * l2_unflipped[3]);
+
+      FourMomentum dilepton = dilepton_unflipped;
+      dilepton.setPz(-1 * dilepton_unflipped[3]);
 
       const double Etal1 = leptons.size()>0 ? l1.eta() : -15;
       const double Etal2 = leptons.size()>1 ? l2.eta() : -15;
@@ -146,10 +156,10 @@ namespace Rivet {
       //if (leptons[0].abspid() != leptons[1].abspid()) vetoEvent;
       //if (leptons[0].abspid() = leptons[1].abspid()) vetoEvent;
 
-      // opposite charged leptons
-      if (leptons[0].charge() == leptons[1].charge()) vetoEvent;
+      // opposite charged leptons (this needs to be commented out for CepGen samples)
+      //if (leptons[0].charge() == leptons[1].charge()) vetoEvent;
 
-      // di-lepton invariant mass selection
+      // di-lepton invariant mass selection (changed from 60 to 20 to match with LPAIR sample)
       if (mll <= 20) vetoEvent;
 
       // di-lepton pT selection
@@ -173,15 +183,19 @@ namespace Rivet {
 
       int lowEtaCt = 0;
       for (const Particle& p : cfs_nolep.particles()) {
-        _histEtaSumEt -> fill(p.abseta(), p.Et());
-        _histPt -> fill(p.pT()/GeV);
-        _histEta -> fill(p.eta());
-        _histPhi -> fill(p.phi());
+        // Flip sign of z momentum to switch from inelastic-elastic to elastic-inelastic
+        FourMomentum p_flipped = p.momentum();
+        p_flipped.setPz(-1 * p_flipped[3]);
 
-        if (p.abseta() <= 2.5) {
-          _histPtLowEta->fill(p.pT()/GeV);
+        _histEtaSumEt -> fill(p_flipped.abseta(), p_flipped.Et());
+        _histPt -> fill(p_flipped.pT()/GeV);
+        _histEta -> fill(p_flipped.eta());
+        _histPhi -> fill(p_flipped.phi());
 
-          if (p.pT()/GeV >= 0.5) lowEtaCt++;
+        if (p_flipped.abseta() <= 2.5) {
+          _histPtLowEta->fill(p_flipped.pT()/GeV);
+
+          if (p_flipped.pT()/GeV >= 0.5) lowEtaCt++;
         }
       }
       _histMultLowEta -> fill(lowEtaCt);

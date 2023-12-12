@@ -126,7 +126,7 @@ NormalizeToSum=0
 # + any additional plot settings you might like, see make-plots documentation
 #END PLOT
 
-#BEGIN PLOT /RivetAnalysis_yy_ll/pTLowEta
+#BEGIN PLOT /RivetAnalysis_yy_ll/PtLowEta
 Title=Charged-Particles $p_T$ ($\eta < 2.5$)
 XLabel=$p_T$
 YLabel=Charged Particles
